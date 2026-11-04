@@ -1,0 +1,9 @@
+Mettre le portfolio en ligne avec GitHub Pages
+1. Créez un compte sur github.com.
+2. Créez un dépôt PUBLIC nommé  VOTRE-NOM-UTILISATEUR.github.io
+3. Dans le dépôt : Add file > Upload files, puis glissez TOUT le contenu de ce dossier
+   (index.html, drones.html, consulting.html, pondypatch.html, pondypatch-demo.html, world.js et le dossier fa),
+   puis Commit changes.
+4. Settings > Pages : Source = Deploy from a branch, branche main, dossier / (root), Save.
+5. Après 1 à 2 minutes, le site est à l'adresse https://VOTRE-NOM-UTILISATEUR.github.io
+Le fichier d'accueil doit s'appeler index.html (c'est le cas).

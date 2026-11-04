@@ -1,0 +1,1417 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finance et comptabilité</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+
+
+:root {
+  --paper: #f2f5f7; --surface: #ffffff; --ink: #12212c; --ink-2: #485b68; --line: #d6dee3;
+  --link: #1d5f80; --link-bg: #e3f0f7; --mark: #f5c020; --warn: #8a6a00;
+  --c-prod: #1d5f80; --c-tbp: #9ccae0; --c-wf: #f5c020;
+  --s-ok: #1b6e44; --s-late: #8f5600; --s-risk: #a8321f; --s-up: #4f6270;
+  --s-ok-bg: #e2f3ea; --s-late-bg: #fbeed6; --s-risk-bg: #fbe3df; --s-up-bg: #e8edf0;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+    --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+    --c-prod: #5fb2dc; --c-tbp: #2d5d77; --c-wf: #f5c020;
+    --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+    --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+  --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+  --c-prod: #5fb2dc; --c-tbp: #2d5d77; --c-wf: #f5c020;
+  --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+  --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+}
+
+
+
+#host-forecast {
+  --paper: #f2f5f7; --surface: #ffffff; --ink: #12212c; --ink-2: #485b68; --line: #d6dee3;
+  --link: #1d5f80; --link-bg: #e3f0f7; --mark: #f5c020; --warn: #8a6a00;
+  --c-prod: #1d5f80; --c-tbp: #9ccae0; --c-wf: #f5c020;
+  --s-ok: #1b6e44; --s-late: #8f5600; --s-risk: #a8321f; --s-up: #4f6270;
+  --s-ok-bg: #e2f3ea; --s-late-bg: #fbeed6; --s-risk-bg: #fbe3df; --s-up-bg: #e8edf0;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #host-forecast {
+    --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+    --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+    --c-prod: #5fb2dc; --c-tbp: #2d5d77; --c-wf: #f5c020;
+    --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+    --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] #host-forecast {
+  --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+  --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+  --c-prod: #5fb2dc; --c-tbp: #2d5d77; --c-wf: #f5c020;
+  --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+  --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+}
+
+
+
+#host-expenses {
+  --paper: #f2f5f7; --surface: #ffffff; --ink: #12212c; --ink-2: #485b68; --line: #d6dee3;
+  --link: #1d5f80; --link-bg: #e3f0f7; --mark: #f5c020; --warn: #8a6a00;
+  --s-ok: #1b6e44; --s-risk: #a8321f; --s-ok-bg: #e2f3ea; --s-risk-bg: #fbe3df;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #host-expenses {
+    --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+    --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+    --s-ok: #6fd9a0; --s-risk: #f29a85; --s-ok-bg: #173a2a; --s-risk-bg: #442119; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] #host-expenses {
+  --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+  --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+  --s-ok: #6fd9a0; --s-risk: #f29a85; --s-ok-bg: #173a2a; --s-risk-bg: #442119; color-scheme: dark;
+}
+
+
+
+#host-billing {
+  --paper: #f2f5f7; --surface: #ffffff; --ink: #12212c; --ink-2: #485b68; --line: #d6dee3;
+  --link: #1d5f80; --link-bg: #e3f0f7; --mark: #f5c020; --warn: #8a6a00;
+  --s-ok: #1b6e44; --s-late: #8f5600; --s-risk: #a8321f; --s-up: #4f6270;
+  --s-ok-bg: #e2f3ea; --s-late-bg: #fbeed6; --s-risk-bg: #fbe3df; --s-up-bg: #e8edf0;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #host-billing {
+    --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+    --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+    --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+    --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] #host-billing {
+  --paper: #0e1a21; --surface: #152630; --ink: #e8f0f4; --ink-2: #9fb4c0; --line: #28414d;
+  --link: #8ccbea; --link-bg: #1d3846; --warn: #f5c020;
+  --s-ok: #6fd9a0; --s-late: #f0b44c; --s-risk: #f29a85; --s-up: #a9bcc8;
+  --s-ok-bg: #173a2a; --s-late-bg: #3d2f12; --s-risk-bg: #442119; --s-up-bg: #213640; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: clamp(28px, 6vw, 64px);
+}
+.wrap { max-width: 62rem; margin-inline: auto; }
+.read { max-width: 40rem; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; border-radius: 4px; }
+.back { font-family: var(--f-mono); font-size: .8rem; display: inline-block; margin-bottom: 20px; }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 16px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 20px; text-wrap: balance; }
+.lede { font-size: 1.15rem; color: var(--ink-2); margin: 0 0 28px; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: clamp(28px, 5vw, 44px); border-bottom: 1px solid var(--line); }
+.tabs button { font: 700 1rem var(--f-display); color: var(--ink-2); background: none; border: 0; border-bottom: 3px solid transparent; padding: 10px 14px; margin-bottom: -1px; cursor: pointer; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--mark); }
+.tabs button:hover { color: var(--ink); }
+.host { display: block; }
+[hidden] { display: none !important; }
+</style>
+
+<div class="wrap">
+  <a class="back" href="index.html">← Portfolio</a>
+  <header class="read">
+    <p class="eyebrow">Service finance et comptabilité</p>
+    <h1>Prévision de revenus, réconciliation de notes de frais, facturation</h1>
+    <p class="lede">Trois projets d'automatisation menés en entreprise, avec le service finance et comptabilité. Chaque onglet présente le besoin, la méthode, puis une démo à manipuler. Toutes les données sont inventées.</p>
+  </header>
+  <div class="tabs" role="tablist" aria-label="Projets">
+    <button role="tab" id="tab-forecast" aria-controls="host-forecast" aria-selected="false">Prévision de revenus</button>
+    <button role="tab" id="tab-expenses" aria-controls="host-expenses" aria-selected="false">Réconciliation de notes de frais</button>
+    <button role="tab" id="tab-billing" aria-controls="host-billing" aria-selected="false">Facturation</button>
+  </div>
+  <div class="host" id="host-forecast" role="tabpanel" aria-labelledby="tab-forecast" hidden></div>
+  <div class="host" id="host-expenses" role="tabpanel" aria-labelledby="tab-expenses" hidden></div>
+  <div class="host" id="host-billing" role="tabpanel" aria-labelledby="tab-billing" hidden></div>
+</div>
+
+<template id="tpl-forecast"><style>:host { display: block; font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6; color: var(--ink); }
+*, *::before, *::after { box-sizing: border-box; }
+.wrap { max-width: 62rem; margin-inline: auto; }
+.read { max-width: 40rem; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; border-radius: 4px; }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 16px; }
+.t1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 20px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; margin: 20px 0 8px; }
+.lede { font-size: 1.15rem; color: var(--ink-2); margin: 0 0 clamp(28px, 5vw, 48px); }
+section { margin-bottom: clamp(32px, 6vw, 56px); }
+p { margin: 0 0 12px; }
+ol.steps { margin: 0; padding-left: 1.3rem; display: grid; gap: 8px; }
+ol.steps li::marker { font-family: var(--f-mono); color: var(--ink-2); }
+dl.defs { margin: 0; display: grid; gap: 10px; }
+dl.defs > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+dl.defs dt { font-family: var(--f-mono); font-size: .88rem; font-weight: 600; }
+dl.defs dd { margin: 2px 0 0; color: var(--ink-2); font-size: .95rem; }
+
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(14px, 3vw, 26px); }
+.demo-top { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.sample { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--warn); }
+.tabs { display: flex; gap: 6px; margin: 14px 0 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tabs button { font: inherit; font-size: .95rem; font-weight: 700; color: var(--ink-2); background: transparent; border: 1px solid transparent; border-bottom: 0; padding: 8px 16px; border-radius: 8px 8px 0 0; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--surface); border-color: var(--line); border-bottom: 1px solid var(--surface); }
+.panel { padding-top: 18px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: end; }
+.fld { display: grid; gap: 3px; font-size: .85rem; font-weight: 700; min-width: 0; }
+select { font: inherit; font-size: .92rem; font-weight: 400; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; max-width: 100%; }
+.reset { font: inherit; font-size: .9rem; font-weight: 700; color: var(--link); background: transparent; border: 1px solid var(--link); border-radius: 8px; padding: 6px 14px; cursor: pointer; }
+.reset:hover { background: var(--link-bg); }
+details.probs { margin-top: 14px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; }
+details.probs summary { cursor: pointer; font-weight: 700; font-size: .95rem; }
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 12px 22px; margin: 12px 0 6px; }
+.ctl label { display: flex; justify-content: space-between; gap: 8px; font-size: .9rem; font-weight: 700; margin-bottom: 2px; }
+.ctl output { font-family: var(--f-mono); font-weight: 600; color: var(--link); }
+input[type="range"] { width: 100%; accent-color: var(--link); }
+.hint { color: var(--ink-2); font-size: .88rem; margin: 4px 0 0; }
+
+.kpi-title { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 22px 0 8px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: 12px; }
+.kpi { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+.kpi .l { font-size: .88rem; font-weight: 700; display: block; }
+.kpi .d { font-size: .78rem; color: var(--ink-2); display: block; }
+.kpi b { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.45rem, 4vw, 1.9rem); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.kpi.total { border-color: var(--link); }
+
+.chart-box { margin-top: 22px; }
+.chart-box svg { display: block; width: 100%; height: auto; }
+.chart-box text { fill: var(--ink-2); font-family: var(--f-body); font-size: 11px; }
+.chart-box .grid { stroke: var(--line); stroke-width: 1; }
+.chart-box .prod { fill: var(--c-prod); }
+.chart-box .tbp { fill: var(--c-tbp); stroke: var(--c-prod); stroke-width: 1; }
+.chart-box .wf { fill: var(--c-wf); }
+.chart-box .hit { fill: transparent; }
+.chart-box .hit:hover, .chart-box .hit.on { fill: var(--link); fill-opacity: .08; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .88rem; color: var(--ink-2); margin-top: 6px; }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.readout { min-height: 1.6em; font-size: .92rem; margin-top: 8px; font-variant-numeric: tabular-nums; }
+
+.status-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: 12px; }
+.stile { font: inherit; text-align: left; cursor: pointer; border: 2px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+.stile .l { display: block; font-weight: 700; font-size: .92rem; }
+.stile b { font-family: var(--f-display); font-size: 2rem; line-height: 1.2; font-weight: 700; }
+.stile[aria-pressed="true"] { border-color: var(--link); background: var(--link-bg); }
+.chip { display: inline-block; font-size: .8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { color: var(--s-ok); background: var(--s-ok-bg); }
+.chip.late { color: var(--s-late); background: var(--s-late-bg); }
+.chip.risk { color: var(--s-risk); background: var(--s-risk-bg); }
+.chip.up { color: var(--s-up); background: var(--s-up-bg); }
+.rule { color: var(--ink-2); font-size: .9rem; margin: 14px 0 0; max-width: 46rem; }
+
+.tblwrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; }
+caption { text-align: left; font-weight: 700; padding: 10px 12px; }
+th { text-align: left; font-weight: 700; color: var(--ink-2); font-size: .8rem; padding: 8px 12px; border-top: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 12px; border-top: 1px solid var(--line); white-space: nowrap; }
+th.n, td.n { text-align: right; }
+.note { color: var(--ink-2); font-size: .92rem; margin-top: 12px; max-width: 42rem; }
+footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .9rem; max-width: 42rem; }
+
+details.more { margin: 8px 0 32px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+details.more > summary { cursor: pointer; padding: 14px 18px; font-family: var(--f-display); font-weight: 700; }
+details.more > section { padding: 0 18px; margin-bottom: 20px; }
+</style><div class="wrap">
+  <header class="read">
+    <p class="eyebrow">Service finance et comptabilité · Prévision de revenus</p>
+    <h2 class="t1">Prévoir les revenus et suivre les projets</h2>
+    <p class="lede">Combien a-t-on produit, combien reste-t-il sur les contrats signés, et que peut-on espérer du reste du pipeline ? Un tableau de bord réunit ces trois réponses, avec un second onglet pour repérer les projets en retard.</p>
+  </header>
+  <section id="demo" aria-labelledby="demo-title">
+    <div class="demo">
+      <div class="demo-top">
+        <h2 id="demo-title">La démo</h2>
+        <span class="sample">Projets et montants inventés · date de référence : novembre 2026</span>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Pages du tableau de bord">
+        <button type="button" role="tab" id="tab-fc" aria-selected="true" aria-controls="panel-fc">Prévisions</button>
+        <button type="button" role="tab" id="tab-st" aria-selected="false" aria-controls="panel-st">Statut et risques</button>
+      </div>
+
+      <div class="panel" id="panel-fc" role="tabpanel" aria-labelledby="tab-fc">
+        <div class="filters">
+          <label class="fld" for="from">Du<select id="from"></select></label>
+          <label class="fld" for="to">Au<select id="to"></select></label>
+          <button type="button" class="reset" id="reset">Rétablir les valeurs d'exemple</button>
+        </div>
+        <details class="probs" id="probs">
+          <summary>Probabilités par stade du pipeline</summary>
+          <div class="controls" id="controls"></div>
+          <p class="hint">Elles ne s'appliquent qu'aux projets non signés. Les montants signés ne changent pas.</p>
+        </details>
+
+        <p class="kpi-title">Sur la période choisie</p>
+        <div class="kpis" aria-live="polite">
+          <div class="kpi"><span class="l">Produced</span><span class="d">Revenus réalisés</span><b id="k-prod">—</b></div>
+          <div class="kpi"><span class="l">To Be Produced</span><span class="d">Signés, restant à produire</span><b id="k-tbp">—</b></div>
+          <div class="kpi"><span class="l">Weighted Forecast</span><span class="d">Non signés, pondérés</span><b id="k-wf">—</b></div>
+          <div class="kpi total"><span class="l">Total Amount</span><span class="d">Tous types</span><b id="k-total">—</b></div>
+        </div>
+
+        <p class="kpi-title">Année en cours (2026), indépendant des dates</p>
+        <div class="kpis">
+          <div class="kpi"><span class="l">Produced This Year</span><span class="d">Réalisé depuis janvier</span><b id="y-prod">—</b></div>
+          <div class="kpi"><span class="l">To Be Produced This Year</span><span class="d">Signé, d'ici fin décembre</span><b id="y-tbp">—</b></div>
+          <div class="kpi"><span class="l">Weighted Forecast This Year</span><span class="d">Non signé, d'ici fin décembre</span><b id="y-wf">—</b></div>
+          <div class="kpi total"><span class="l">Total to End of Year</span><span class="d">Réalisé et prévu</span><b id="y-total">—</b></div>
+        </div>
+
+        <div class="chart-box">
+          <p class="kpi-title">Revenus mensuels</p>
+          <div id="chart" role="img" aria-label="Revenus par mois : produits, restant à produire et pondérés"></div>
+          <div class="legend">
+            <span><i style="background:var(--c-prod)"></i>Produced</span>
+            <span><i style="background:var(--c-tbp);border:1px solid var(--c-prod)"></i>To Be Produced</span>
+            <span><i style="background:var(--c-wf)"></i>Weighted Forecast</span>
+          </div>
+          <div class="readout" id="readout">Survolez une barre pour voir le détail du mois.</div>
+        </div>
+        <p class="note">Dans cette démo, le montant d'un projet est réparti à parts égales sur sa durée. Les mois avant novembre 2026 sont du réalisé, les suivants du prévu. Montants en dollars.</p>
+      </div>
+
+      <div class="panel" id="panel-st" role="tabpanel" aria-labelledby="tab-st" hidden>
+        <div class="status-tiles" id="stiles"></div>
+        <p class="rule">Dans la démo, l'écart est l'avancement réel moins l'avancement prévu, en points. Cliquez sur un statut pour filtrer la liste, puis de nouveau pour revenir à tous les projets.</p>
+        <div class="tblwrap">
+          <table>
+            <caption id="st-caption">Avancement des projets</caption>
+            <thead><tr><th>Projet</th><th>Statut</th><th class="n">Prévu</th><th class="n">Réel</th><th class="n">Écart</th><th class="n">Montant</th></tr></thead>
+            <tbody id="st-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+  <details class="more"><summary>Le besoin, la méthode et ce qui a été écarté</summary>
+  <section class="read" id="besoin">
+    <h2>Le besoin</h2>
+    <p>La direction voulait une vue unique des revenus : ce qui est déjà produit, ce qui est signé mais pas encore produit, et ce qui dépend d'opportunités non signées, pour les mois voire les années à venir. Elle voulait aussi savoir quels projets signés prennent du retard, sans avoir à ouvrir chaque dossier dans Salesforce.</p>
+  </section>
+  <section class="read" id="methode">
+    <h2>La méthode</h2>
+    <ol class="steps">
+      <li>Un jeu de données unique réunit, par projet et par mois, les revenus réalisés (Actuals) et prévus (Forecast), avec le statut signé ou non signé.</li>
+      <li>Les opportunités non signées sont pondérées par un facteur de probabilité selon leur stade dans le pipeline Salesforce.</li>
+      <li>Quatre indicateurs en découlent, filtrables par dates : Produced, To Be Produced, Weighted Forecast et Total.</li>
+      <li>Les mêmes indicateurs sont aussi calculés sur l'année en cours, indépendamment du filtre de dates.</li>
+      <li>Une seconde page classe chaque projet signé selon l'écart entre son avancement réel et son avancement prévu.</li>
+    </ol>
+
+    <h3>Les indicateurs</h3>
+    <dl class="defs">
+      <div><dt>Produced</dt><dd>Revenus réalisés (type Actuals).</dd></div>
+      <div><dt>To Be Produced</dt><dd>Revenus prévus des projets signés (type Forecast).</dd></div>
+      <div><dt>Weighted Forecast</dt><dd>Revenus prévus des projets non signés, pondérés par la probabilité du stade.</dd></div>
+      <div><dt>Total Amount</dt><dd>Somme de tous les montants, tous types confondus.</dd></div>
+      <div><dt>Statut du projet</dt><dd>Signé et en avance ou dans les temps : On Track. Écart négatif jusqu'à 30 points : Delayed. Écart au-delà de 30 points : At Risk. Non signé ou pas démarré : Upcoming.</dd></div>
+    </dl>
+  </section>
+  </details>
+  <footer>Tous les projets, montants, avancements et probabilités affichés ici sont inventés pour ce portfolio.</footer>
+</div>
+</template>
+<template id="tpl-expenses"><style>:host { display: block; font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6; color: var(--ink); }
+*, *::before, *::after { box-sizing: border-box; }
+.wrap { max-width: 62rem; margin-inline: auto; }
+.read { max-width: 40rem; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; border-radius: 4px; }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 16px; }
+.t1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 20px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; margin: 20px 0 8px; }
+.lede { font-size: 1.15rem; color: var(--ink-2); margin: 0 0 clamp(28px, 5vw, 48px); }
+section { margin-bottom: clamp(32px, 6vw, 56px); }
+p { margin: 0 0 12px; }
+ol.steps { margin: 0; padding-left: 1.3rem; display: grid; gap: 8px; }
+ol.steps li::marker { font-family: var(--f-mono); color: var(--ink-2); }
+dl.defs { margin: 0; display: grid; gap: 10px; }
+dl.defs > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+dl.defs dt { font-family: var(--f-mono); font-size: .88rem; font-weight: 600; }
+dl.defs dd { margin: 2px 0 0; color: var(--ink-2); font-size: .95rem; }
+
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(14px, 3vw, 26px); }
+.demo-top { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.sample { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--warn); }
+.inputs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 16px; margin-top: 16px; }
+@media (max-width: 52rem) { .inputs { grid-template-columns: minmax(0, 1fr); } }
+.box { border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.box h3 { margin: 0; padding: 10px 12px; font-family: var(--f-mono); font-size: .8rem; letter-spacing: .06em; font-weight: 600; }
+.scroll { overflow: auto; max-height: 280px; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: 10px; }
+.btn { font: inherit; font-size: .9rem; font-weight: 700; color: var(--link); background: transparent; border: 1px solid var(--link); border-radius: 8px; padding: 6px 14px; cursor: pointer; }
+.btn:hover { background: var(--link-bg); }
+.hint { color: var(--ink-2); font-size: .88rem; margin: 8px 0 0; }
+
+.sums { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: 12px; margin: 22px 0 8px; }
+.sum { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+.sum .l { font-size: .85rem; color: var(--ink-2); display: block; }
+.sum b { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 1.2; font-variant-numeric: tabular-nums; }
+
+.tabs { display: flex; gap: 6px; margin: 18px 0 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tabs button { font-family: var(--f-mono); font-size: .8rem; font-weight: 600; color: var(--ink-2); background: transparent; border: 1px solid transparent; border-bottom: 0; padding: 8px 12px; border-radius: 8px 8px 0 0; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--surface); border-color: var(--line); border-bottom: 1px solid var(--surface); }
+.panel { padding-top: 12px; }
+
+table { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-weight: 700; color: var(--ink-2); font-size: .78rem; padding: 7px 10px; border-top: 1px solid var(--line); white-space: nowrap; position: sticky; top: 0; background: var(--surface); }
+td { padding: 6px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+th.n, td.n { text-align: right; }
+.tblwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; max-height: 360px; overflow-y: auto; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { color: var(--s-ok); background: var(--s-ok-bg); }
+.chip.risk { color: var(--s-risk); background: var(--s-risk-bg); }
+.empty { padding: 16px; color: var(--ink-2); }
+.copyrow { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: 10px; }
+#copyout { width: 100%; font-family: var(--f-mono); font-size: .8rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px; min-height: 6rem; margin-top: 8px; }
+
+.tester { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 18px; }
+.tester label { display: block; font-weight: 700; font-size: .95rem; margin-bottom: 4px; }
+.tester input { font: inherit; width: 100%; max-width: 30rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.result { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .95rem; }
+.result span b { font-family: var(--f-mono); font-weight: 600; }
+.rules { margin-top: 10px; }
+.rules summary { cursor: pointer; font-weight: 700; font-size: .92rem; }
+.rules table { margin-top: 8px; }
+.note { color: var(--ink-2); font-size: .92rem; margin-top: 12px; max-width: 44rem; }
+footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .9rem; max-width: 42rem; }
+
+details.more { margin: 8px 0 32px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+details.more > summary { cursor: pointer; padding: 14px 18px; font-family: var(--f-display); font-weight: 700; }
+details.more > section { padding: 0 18px; margin-bottom: 20px; }
+</style><div class="wrap">
+  <header class="read">
+    <p class="eyebrow">Service finance et comptabilité · Réconciliation de notes de frais</p>
+    <h2 class="t1">Rapprocher les dépenses et les remboursements</h2>
+    <p class="lede">Chaque dépense est une ligne, chaque remboursement est un virement groupé. Un script retrouve quoi a été payé, classe chaque dépense et prépare le fichier pour QuickBooks.</p>
+  </header>
+  <section id="demo" aria-labelledby="demo-title">
+    <div class="demo">
+      <div class="demo-top">
+        <h2 id="demo-title">La démo</h2>
+        <span class="sample">Salariés, dépenses et paiements inventés</span>
+      </div>
+      <p class="read">Décochez un paiement du registre de paie : le rapprochement se recalcule et les lignes concernées repassent en Not Paid.</p>
+
+      <div class="inputs">
+        <div class="box">
+          <h3>INPUT_PAYROLL</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Inclure</th><th>Salarié</th><th>Date</th><th class="n">Remboursement</th></tr></thead>
+            <tbody id="pay-body"></tbody>
+          </table></div>
+        </div>
+        <div class="box">
+          <h3>INPUT_EVERWIN</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Salarié</th><th>Code</th><th>Date</th><th>Détail</th><th class="n">Montant</th></tr></thead>
+            <tbody id="exp-body"></tbody>
+          </table></div>
+        </div>
+      </div>
+      <div class="tools">
+        <button type="button" class="btn" id="reset">Recocher tous les paiements</button>
+      </div>
+
+      <div class="sums" aria-live="polite">
+        <div class="sum"><span class="l">Lignes payées</span><b id="s-paid">—</b></div>
+        <div class="sum"><span class="l">Lignes non payées</span><b id="s-unpaid">—</b></div>
+        <div class="sum"><span class="l">Montant payé</span><b id="s-amt">—</b></div>
+        <div class="sum"><span class="l">Montant restant dû</span><b id="s-rem">—</b></div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Feuilles de résultat">
+        <button type="button" role="tab" id="t-check" aria-selected="true" aria-controls="out">Output_Check_Payment</button>
+        <button type="button" role="tab" id="t-paid" aria-selected="false" aria-controls="out">Paid_Expenses</button>
+        <button type="button" role="tab" id="t-pend" aria-selected="false" aria-controls="out">Pending_Payment_Expenses</button>
+        <button type="button" role="tab" id="t-qb" aria-selected="false" aria-controls="out">Output_Quickbooks_Template</button>
+      </div>
+      <div class="panel" id="out" role="tabpanel">
+        <div class="tblwrap" id="out-table"></div>
+        <div class="copyrow" id="copyrow" hidden>
+          <button type="button" class="btn" id="copybtn">Copier en CSV</button>
+          <span class="hint" id="copymsg"></span>
+        </div>
+        <textarea id="copyout" hidden readonly aria-label="Contenu CSV du modèle QuickBooks"></textarea>
+      </div>
+
+      <div class="tester">
+        <label for="kw">Tester la catégorisation par mots-clés</label>
+        <input type="text" id="kw" value="Taxi aéroport" autocomplete="off" spellcheck="false">
+        <div class="result" id="kw-result" aria-live="polite"></div>
+        <details class="rules">
+          <summary>Voir les règles de la démo</summary>
+          <div class="tblwrap"><table>
+            <thead><tr><th>Catégorie</th><th>Sous-catégorie</th><th>Mots-clés</th></tr></thead>
+            <tbody id="rules-body"></tbody>
+          </table></div>
+        </details>
+      </div>
+
+      <p class="note">Dans la démo, un paiement qui égale la somme de codes de dépense complets les marque payés. Sinon, il est réparti sur les lignes restantes, de la plus ancienne à la plus récente, ce qui laisse un reste sur la dernière ligne touchée. Montants en dollars.</p>
+    </div>
+  </section>
+  <details class="more"><summary>Le besoin, la méthode et ce qui a été écarté</summary>
+  <section class="read" id="besoin">
+    <h2>Le besoin</h2>
+    <p>Les dépenses des salariés sont saisies ligne par ligne dans l'outil de notes de frais, avec le détail de chaque achat. Les remboursements sont versés par les RH, groupés chaque mois, et ne disent pas quelle dépense ils couvrent. Il fallait savoir ce qui avait été remboursé, ranger chaque dépense dans une catégorie comptable et alimenter QuickBooks sans ressaisie.</p>
+  </section>
+  <section class="read" id="methode">
+    <h2>La méthode</h2>
+    <p>Un script Python lit et écrit directement dans Google Sheets. Il se lance depuis un notebook Colab : on exécute tout et on autorise l'accès au compte Google.</p>
+    <ol class="steps">
+      <li>Il lit deux sources : le registre de paie (les remboursements par salarié) et l'export de l'outil de notes de frais (le détail des dépenses).</li>
+      <li>Il harmonise les noms des salariés entre les deux sources, puis les dates et les montants, qu'ils soient écrits à l'anglaise (1,234.56) ou à la française (1 234,56).</li>
+      <li>Il range chaque dépense dans une catégorie (voyages, marketing, télécoms et administratif, formation, juridique) et une sous-catégorie, d'après des mots-clés dans le titre, le commentaire ou la description. Quelques exceptions se règlent à la main.</li>
+      <li>Il regroupe les dépenses par salarié et par code de dépense, puis les compare aux paiements du registre de paie.</li>
+      <li>Il marque chaque ligne Paid ou Not Paid et calcule le montant restant. Les paiements partiels sont gérés, et un paiement qui correspond à la somme de plusieurs dépenses est retrouvé par programmation dynamique.</li>
+      <li>Il écrit les résultats dans Google Sheets, et un script Apps Script produit le modèle d'import QuickBooks à partir des dépenses payées.</li>
+    </ol>
+
+    <h3>Ce que le script produit</h3>
+    <dl class="defs">
+      <div><dt>Output_Check_Payment</dt><dd>Le rapprochement complet, par salarié et par code de dépense.</dd></div>
+      <div><dt>Paid_Expenses</dt><dd>Les lignes de dépense payées.</dd></div>
+      <div><dt>Pending_Payment_Expenses</dt><dd>Les lignes pas encore payées, avec le montant restant.</dd></div>
+      <div><dt>Output_Quickbooks_Template</dt><dd>Pour chaque dépense payée : salarié, code, date, montant, catégorie et sous-catégorie, prêt à importer dans QuickBooks.</dd></div>
+    </dl>
+  </section>
+  </details>
+  <footer>Tous les salariés, dépenses, codes et montants affichés ici sont inventés pour ce portfolio.</footer>
+</div>
+</template>
+<template id="tpl-billing"><style>:host { display: block; font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6; color: var(--ink); }
+*, *::before, *::after { box-sizing: border-box; }
+.wrap { max-width: 62rem; margin-inline: auto; }
+.read { max-width: 40rem; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; border-radius: 4px; }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 16px; }
+.t1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 20px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; margin: 20px 0 8px; }
+.lede { font-size: 1.15rem; color: var(--ink-2); margin: 0 0 clamp(28px, 5vw, 48px); }
+section { margin-bottom: clamp(32px, 6vw, 56px); }
+p { margin: 0 0 12px; }
+ol.steps, ul.plain { margin: 0; padding-left: 1.3rem; display: grid; gap: 8px; }
+ol.steps li::marker { font-family: var(--f-mono); color: var(--ink-2); }
+dl.defs { margin: 0; display: grid; gap: 10px; }
+dl.defs > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+dl.defs dt { font-family: var(--f-mono); font-size: .88rem; font-weight: 600; }
+dl.defs dd { margin: 2px 0 0; color: var(--ink-2); font-size: .95rem; }
+
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(14px, 3vw, 26px); }
+.demo-top { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.sample { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--warn); }
+.filters { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: end; margin-top: 16px; }
+.fld { display: grid; gap: 3px; font-size: .85rem; font-weight: 700; min-width: 0; }
+select, input[type="date"], input[type="number"] { font: inherit; font-size: .92rem; font-weight: 400; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; max-width: 100%; }
+input[type="number"] { width: 9.5rem; }
+select:disabled, input:disabled { opacity: .55; }
+.btn { font: inherit; font-size: .9rem; font-weight: 700; color: var(--link); background: transparent; border: 1px solid var(--link); border-radius: 8px; padding: 6px 14px; cursor: pointer; }
+.btn:hover { background: var(--link-bg); }
+.hint { color: var(--ink-2); font-size: .88rem; margin: 8px 0 0; }
+
+.kpi-title { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 22px 0 8px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr)); gap: 12px; }
+.kpi { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; min-width: 0; }
+.kpi .l { font-size: .88rem; font-weight: 700; display: block; }
+.kpi .d { font-size: .78rem; color: var(--ink-2); display: block; }
+.kpi b { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 4vw, 1.85rem); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.kpi.total { border-color: var(--link); }
+
+.tabs { display: flex; gap: 6px; margin: 24px 0 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tabs button { font-family: var(--f-mono); font-size: .8rem; font-weight: 600; color: var(--ink-2); background: transparent; border: 1px solid transparent; border-bottom: 0; padding: 8px 12px; border-radius: 8px 8px 0 0; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--surface); border-color: var(--line); border-bottom: 1px solid var(--surface); }
+.panel { padding-top: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-weight: 700; color: var(--ink-2); font-size: .78rem; padding: 7px 10px; border-top: 1px solid var(--line); white-space: nowrap; position: sticky; top: 0; background: var(--surface); }
+td { padding: 6px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+th.n, td.n { text-align: right; }
+.tblwrap { overflow: auto; border: 1px solid var(--line); border-radius: 10px; max-height: 420px; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { color: var(--s-ok); background: var(--s-ok-bg); }
+.chip.late { color: var(--s-late); background: var(--s-late-bg); }
+.chip.risk { color: var(--s-risk); background: var(--s-risk-bg); }
+.chip.up { color: var(--s-up); background: var(--s-up-bg); }
+.empty { padding: 16px; color: var(--ink-2); margin: 0; }
+.note { color: var(--ink-2); font-size: .92rem; margin-top: 12px; max-width: 46rem; }
+footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .9rem; max-width: 42rem; }
+
+details.more { margin: 8px 0 32px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+details.more > summary { cursor: pointer; padding: 14px 18px; font-family: var(--f-display); font-weight: 700; }
+details.more > section { padding: 0 18px; margin-bottom: 20px; }
+</style><div class="wrap">
+  <header class="read">
+    <p class="eyebrow">Service finance et comptabilité · Facturation</p>
+    <h2 class="t1">Ne plus laisser filer une facture</h2>
+    <p class="lede">Un script calcule le calendrier de facturation de chaque projet, le compare à ce qui a déjà été facturé et classe chaque échéance : facturée, en retard, imminente ou à venir.</p>
+  </header>
+  <section id="demo" aria-labelledby="demo-title">
+    <div class="demo">
+      <div class="demo-top">
+        <h2 id="demo-title">La démo</h2>
+        <span class="sample">Projets, montants et dates inventés</span>
+      </div>
+      <p class="read">Changez la date du jour ou le montant déjà facturé d'un projet à jalons : les statuts et les totaux se recalculent.</p>
+
+      <div class="filters">
+        <label class="fld" for="ref">Date du jour<input type="date" id="ref" value="2026-11-03" min="2026-01-01" max="2027-12-31"></label>
+        <label class="fld" for="cut">Échéances prises en compte
+          <select id="cut">
+            <option value="2099-12-31">Toutes</option>
+            <option value="2026-12-31">Jusqu'à fin 2026</option>
+            <option value="2027-03-31">Jusqu'à fin mars 2027</option>
+          </select>
+        </label>
+        <label class="fld" for="proj">Projet<select id="proj"></select></label>
+        <label class="fld" for="actual">Déjà facturé ($)<input type="number" id="actual" min="0" step="1000" disabled></label>
+        <button type="button" class="btn" id="reset">Rétablir les valeurs d'exemple</button>
+      </div>
+      <p class="hint" id="hint">Choisissez un projet à jalons pour modifier son montant déjà facturé.</p>
+
+      <p class="kpi-title">Billing_Dashboard</p>
+      <div class="kpis" aria-live="polite">
+        <div class="kpi"><span class="l">Total Overdue</span><span class="d">Toutes dates confondues</span><b id="k-over">—</b></div>
+        <div class="kpi"><span class="l">Coming in the next 14 days</span><span class="d">Selon les échéances retenues</span><b id="k-soon">—</b></div>
+        <div class="kpi"><span class="l">Total Upcoming</span><span class="d">Au-delà de 14 jours</span><b id="k-up">—</b></div>
+        <div class="kpi total"><span class="l">Total coming</span><span class="d">En retard, imminent et à venir</span><b id="k-total">—</b></div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Feuilles de résultat">
+        <button type="button" role="tab" id="t-inv" aria-selected="true" aria-controls="out">Invoices_alerts</button>
+        <button type="button" role="tab" id="t-sum" aria-selected="false" aria-controls="out">Project_Summary</button>
+      </div>
+      <div class="panel" id="out" role="tabpanel">
+        <div class="tblwrap" id="out-table"></div>
+      </div>
+
+      <p class="note">Comment lire la démo : les montants déjà facturés viennent normalement d'Everwin (chargés à la main chaque mois, bientôt automatiquement via BigQuery). Ici, pour chaque projet à jalons, vous les saisissez vous-même, et la démo les compare à ce qui aurait dû l'être à la date choisie. Les projets récurrents (abonnements) n'ont pas de montant à comparer : on n'affiche que leurs prochaines échéances. Les projets en régie (facturés au temps passé) n'ont pas de calendrier prévu : ils sont suivis à la main, car les données d'Everwin n'étaient pas assez fiables pour les calculer automatiquement. Montants en dollars.</p>
+    </div>
+  </section>
+  <details class="more"><summary>Le besoin, la méthode et ce qui a été écarté</summary>
+  <section class="read" id="besoin">
+    <h2>Le besoin</h2>
+    <p>Les informations sur les projets en cours aux États-Unis étaient dispersées, et le suivi des facturations à jalons se faisait à la main. L'objectif : réunir ces informations, calculer le plan de facturation de chaque contrat, le comparer aux revenus réels et signaler les alertes, pour que les factures partent à temps et que le revenu reconnu reste aligné sur les contrats.</p>
+  </section>
+  <section class="read" id="methode">
+    <h2>La méthode</h2>
+    <p>Un script Python, conçu pour tourner dans Google Colab, lit et écrit dans Google Sheets. Un tableau de bord Looker Studio lit les feuilles produites.</p>
+    <ol class="steps">
+      <li>Il collecte les données de projet et les données financières dans Google Sheets.</li>
+      <li>Il nettoie et uniformise les champs clés pour que les rapprochements fonctionnent.</li>
+      <li>Il fusionne les deux sources en alignant les projets par correspondance approximative des noms.</li>
+      <li>Il calcule le calendrier de facturation, par jalons ou récurrent.</li>
+      <li>Il rapproche les factures prévues des revenus réels.</li>
+      <li>Il classe chaque échéance : Billed, Overdue, Coming Soon ou Upcoming.</li>
+      <li>Il exporte le détail des échéances et un résumé par projet vers Google Sheets.</li>
+    </ol>
+
+    <h3>Les deux sources</h3>
+    <dl class="defs">
+      <div><dt>Projects_Intake</dt><dd>Les informations de base : client, nom du projet, date de début, valeur du contrat, type de facturation. Chaque nouveau contrat s'ajoute par un formulaire de saisie. Pour les projets en régie (Time &amp; Material), le calendrier reste vide et se gère à la main.</dd></div>
+      <div><dt>Everwin_Updates</dt><dd>Les montants déjà facturés de chaque projet, issus d'Everwin. Aujourd'hui ils sont chargés à la main chaque mois dans la feuille ; à terme, ils seront récupérés automatiquement dans BigQuery. Cette feuille sert au rapprochement entre prévu et réel, pour les projets à jalons uniquement.</dd></div>
+    </dl>
+
+    <h3>Les statuts</h3>
+    <dl class="defs">
+      <div><dt>Billed</dt><dd>Le montant attendu à ce jalon est déjà facturé.</dd></div>
+      <div><dt>Overdue</dt><dd>La date d'échéance est passée et la facture n'est pas partie.</dd></div>
+      <div><dt>Coming Soon</dt><dd>L'échéance tombe dans les 14 jours.</dd></div>
+      <div><dt>Upcoming</dt><dd>L'échéance tombe dans plus de 14 jours.</dd></div>
+    </dl>
+
+    <h3>Ce que le script produit</h3>
+    <dl class="defs">
+      <div><dt>Invoices_alerts</dt><dd>Le détail des échéances, avec plusieurs lignes par projet, une par phase de facturation : montant attendu facturé, reste à facturer et statut.</dd></div>
+      <div><dt>Project_Summary</dt><dd>Une ligne par projet, avec les chiffres et les dates clés.</dd></div>
+      <div><dt>Billing_Dashboard</dt><dd>Le tableau de bord suit les factures en retard, celles des 14 prochains jours, les factures à venir et celles déjà émises. Le total en retard ne dépend pas du filtre de dates, contrairement au total des 14 jours, au total à venir et au total à facturer.</dd></div>
+    </dl>
+  </section>
+  <section class="read" id="abandons">
+    <h2>Ce qui a été essayé puis laissé de côté</h2>
+    <ul class="plain">
+      <li>Le calcul automatique des factures en régie : on aurait dû les calculer directement à partir des heures et des revenus d'Everwin, mais la donnée n'était pas fiable (les taux horaires différaient selon les sources). Ces projets restent donc gérés à la main.</li>
+      <li>L'envoi de la liste des factures à émettre par notifications de calendrier, et un brouillon d'email avec la facture : des scripts Apps Script étaient prêts, mais il a été décidé de ne pas les mettre en service pour l'instant, faute de besoin à ce stade.</li>
+    </ul>
+    <h3>La suite prévue</h3>
+    <p>Récupérer les montants facturés d'Everwin directement dans BigQuery, pour qu'ils soient à jour sans chargement manuel mensuel, puis déclencher le script automatiquement à chaque mise à jour des sources.</p>
+  </section>
+  </details>
+  <footer>Tous les clients, projets, contrats, dates et montants affichés ici sont inventés pour ce portfolio.</footer>
+</div>
+</template>
+
+<script>
+(function () {
+  var INIT = {};
+INIT['forecast'] = function (__SR) {
+  var CUR = 10;      // current month: november 2026 (month 0 = january 2026)
+  var YEAR_END = 11; // last month of the current year
+  var N = 24;        // window: january 2026 to december 2027
+  var STAGES = [
+    { k: 'prospect', label: 'Prospect', p: 10 },
+    { k: 'qualified', label: 'Qualifié', p: 25 },
+    { k: 'proposal', label: 'Proposition', p: 50 },
+    { k: 'negotiation', label: 'Négociation', p: 75 }
+  ];
+  var PROJECTS = [
+    { id: 1, name: 'Altair Retail', signed: true, v: 540000, s: 0, d: 18, act: 58 },
+    { id: 2, name: 'Brightwave Energy', signed: true, v: 360000, s: 2, d: 12, act: 50 },
+    { id: 3, name: 'Cedar Health', signed: true, v: 270000, s: 5, d: 9, act: 20 },
+    { id: 4, name: 'Delta Foods', signed: true, v: 600000, s: 7, d: 15, act: 20 },
+    { id: 5, name: 'Echo Mobility', signed: true, v: 400000, s: 4, d: 10, act: 25 },
+    { id: 6, name: 'Everline Telecom', signed: false, stage: 'negotiation', v: 420000, s: 11, d: 12 },
+    { id: 7, name: 'Fjord Mobility', signed: false, stage: 'negotiation', v: 300000, s: 12, d: 8 },
+    { id: 8, name: 'Granite Capital', signed: false, stage: 'proposal', v: 540000, s: 13, d: 12 },
+    { id: 9, name: 'Harbor Education', signed: false, stage: 'proposal', v: 180000, s: 11, d: 6 },
+    { id: 10, name: 'Ionic Pharma', signed: false, stage: 'qualified', v: 720000, s: 14, d: 18 },
+    { id: 11, name: 'Juniper Hotels', signed: false, stage: 'qualified', v: 260000, s: 13, d: 10 },
+    { id: 12, name: 'Keystone Insurance', signed: false, stage: 'qualified', v: 400000, s: 16, d: 12 },
+    { id: 13, name: 'Lumen Media', signed: false, stage: 'prospect', v: 320000, s: 15, d: 9 },
+    { id: 14, name: 'Meridian Aerospace', signed: false, stage: 'prospect', v: 900000, s: 18, d: 6 },
+    { id: 15, name: 'Nova Logistics', signed: false, stage: 'prospect', v: 210000, s: 17, d: 6 }
+  ];
+
+  var state = { from: 0, to: N - 1, prob: {}, filter: null };
+  function resetState() {
+    state.from = 0; state.to = N - 1; state.filter = null;
+    STAGES.forEach(function (s) { state.prob[s.k] = s.p; });
+  }
+  resetState();
+
+  var fmtMoney = function (v) {
+    if (v >= 1e6) return (v / 1e6).toFixed(2).replace('.', ',') + ' M$';
+    return Math.round(v / 1e3) + ' k$';
+  };
+  var fmtFull = function (v) { return Math.round(v).toLocaleString('fr-FR') + ' $'; };
+  var monthLabel = function (m) {
+    return new Intl.DateTimeFormat('fr-FR', { month: 'short', year: '2-digit' }).format(new Date(2026, m, 1));
+  };
+  var monthLong = function (m) {
+    return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date(2026, m, 1));
+  };
+  var stageLabel = function (k) { return STAGES.filter(function (s) { return s.k === k; })[0].label; };
+
+  // Monthly amounts by type, for the whole window
+  function monthly() {
+    var prod = new Array(N).fill(0), tbp = new Array(N).fill(0), wf = new Array(N).fill(0);
+    PROJECTS.forEach(function (p) {
+      var m = p.v / p.d, w = p.signed ? 1 : state.prob[p.stage] / 100;
+      for (var i = p.s; i < p.s + p.d && i < N; i++) {
+        if (p.signed) { if (i < CUR) prod[i] += m; else tbp[i] += m; }
+        else wf[i] += m * w;
+      }
+    });
+    return { prod: prod, tbp: tbp, wf: wf };
+  }
+  function sumRange(a, from, to) { var t = 0; for (var i = from; i <= to; i++) t += a[i]; return t; }
+
+  // Project status (completion gap thresholds: 0 and -30 points)
+  function planned(p) { return Math.min(100, Math.round(Math.max(0, CUR - p.s) / p.d * 100)); }
+  function statusOf(p) {
+    if (!p.signed) return { key: 'Upcoming', cls: 'up', gap: null };
+    var gap = p.act - planned(p);
+    if (gap >= 0) return { key: 'On Track', cls: 'ok', gap: gap };
+    if (gap >= -30) return { key: 'Delayed', cls: 'late', gap: gap };
+    return { key: 'At Risk', cls: 'risk', gap: gap };
+  }
+  var STATUS_ORDER = ['At Risk', 'Delayed', 'On Track', 'Upcoming'];
+
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  var NS = 'http://www.w3.org/2000/svg';
+  function svg(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // Tabs
+  var tabFc = __SR.getElementById('tab-fc'), tabSt = __SR.getElementById('tab-st');
+  var panelFc = __SR.getElementById('panel-fc'), panelSt = __SR.getElementById('panel-st');
+  function showTab(which) {
+    var fc = which === 'fc';
+    tabFc.setAttribute('aria-selected', String(fc)); tabSt.setAttribute('aria-selected', String(!fc));
+    panelFc.hidden = !fc; panelSt.hidden = fc;
+  }
+  tabFc.addEventListener('click', function () { showTab('fc'); });
+  tabSt.addEventListener('click', function () { showTab('st'); });
+
+  // Date filters
+  var selFrom = __SR.getElementById('from'), selTo = __SR.getElementById('to');
+  for (var i = 0; i < N; i++) {
+    selFrom.appendChild(el('option', { value: String(i) }, monthLabel(i)));
+    selTo.appendChild(el('option', { value: String(i) }, monthLabel(i)));
+  }
+  selFrom.addEventListener('change', function () {
+    state.from = Number(selFrom.value);
+    if (state.to < state.from) state.to = state.from;
+    render();
+  });
+  selTo.addEventListener('change', function () {
+    state.to = Number(selTo.value);
+    if (state.from > state.to) state.from = state.to;
+    render();
+  });
+
+  // Probability sliders
+  var controls = __SR.getElementById('controls');
+  STAGES.forEach(function (s) {
+    var wrap = el('div', { 'class': 'ctl' });
+    var lab = el('label', { 'for': 'p-' + s.k });
+    lab.appendChild(el('span', {}, s.label));
+    var out = el('output', { id: 'o-' + s.k, 'for': 'p-' + s.k }, s.p + ' %');
+    lab.appendChild(out);
+    var inp = el('input', { type: 'range', id: 'p-' + s.k, min: '0', max: '100', step: '5', value: String(s.p) });
+    inp.addEventListener('input', function () {
+      state.prob[s.k] = Number(inp.value);
+      out.textContent = inp.value + ' %';
+      render();
+    });
+    wrap.appendChild(lab); wrap.appendChild(inp); controls.appendChild(wrap);
+  });
+
+  __SR.getElementById('reset').addEventListener('click', function () {
+    resetState();
+    STAGES.forEach(function (s) {
+      __SR.getElementById('p-' + s.k).value = String(s.p);
+      __SR.getElementById('o-' + s.k).textContent = s.p + ' %';
+    });
+    render();
+  });
+
+  var readout = __SR.getElementById('readout');
+  var chartHost = __SR.getElementById('chart');
+
+  function niceStep(max) {
+    var raw = max / 4, mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), r = raw / mag;
+    return (r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10) * mag;
+  }
+
+  function drawChart(mo) {
+    var from = state.from, to = state.to, n = to - from + 1;
+    var W = 720, H = 320, ml = 56, mr = 12, mt = 12, mb = 34;
+    var iw = W - ml - mr, ih = H - mt - mb;
+    var totals = [];
+    for (var i = from; i <= to; i++) totals.push(mo.prod[i] + mo.tbp[i] + mo.wf[i]);
+    var step = niceStep(Math.max.apply(null, totals.concat([1])));
+    var ymax = step * 4;
+    var y = function (v) { return mt + ih - (v / ymax) * ih; };
+    var band = iw / n, bw = Math.min(34, band * 0.7);
+    var root = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, focusable: 'false' });
+    for (var t = 0; t <= 4; t++) {
+      var v = step * t;
+      root.appendChild(svg('line', { 'class': 'grid', x1: ml, x2: W - mr, y1: y(v), y2: y(v) }));
+      root.appendChild(svg('text', { x: ml - 8, y: y(v) + 4, 'text-anchor': 'end' }, v === 0 ? '0' : fmtMoney(v)));
+    }
+    var every = Math.ceil(n / 6);
+    for (var k = 0; k < n; k++) {
+      (function (k) {
+        var m = from + k, cx = ml + band * k + band / 2, acc = 0;
+        [['prod', mo.prod[m]], ['tbp', mo.tbp[m]], ['wf', mo.wf[m]]].forEach(function (seg) {
+          var val = seg[1];
+          if (val <= 0) return;
+          var h = (val / ymax) * ih;
+          root.appendChild(svg('rect', { 'class': seg[0], x: cx - bw / 2, y: y(acc + val), width: bw, height: h, rx: 2 }));
+          acc += val;
+        });
+        if (k % every === 0) root.appendChild(svg('text', { x: cx, y: H - 12, 'text-anchor': 'middle' }, monthLabel(m)));
+        var hit = svg('rect', { 'class': 'hit', x: ml + band * k, y: mt, width: band, height: ih, tabindex: '0' });
+        var show = function () {
+          root.querySelectorAll('.hit.on').forEach(function (e) { e.classList.remove('on'); });
+          hit.classList.add('on');
+          readout.textContent = monthLong(m) + ' : Produced ' + fmtFull(mo.prod[m]) + ', To Be Produced ' + fmtFull(mo.tbp[m]) +
+            ', Weighted Forecast ' + fmtFull(mo.wf[m]) + '.';
+        };
+        hit.addEventListener('pointerenter', show);
+        hit.addEventListener('focus', show);
+        root.appendChild(hit);
+      })(k);
+    }
+    chartHost.replaceChildren(root);
+  }
+
+  function renderForecast() {
+    var mo = monthly(), f = state.from, t = state.to;
+    selFrom.value = String(f); selTo.value = String(t);
+    var p = sumRange(mo.prod, f, t), b = sumRange(mo.tbp, f, t), w = sumRange(mo.wf, f, t);
+    __SR.getElementById('k-prod').textContent = fmtMoney(p);
+    __SR.getElementById('k-tbp').textContent = fmtMoney(b);
+    __SR.getElementById('k-wf').textContent = fmtMoney(w);
+    __SR.getElementById('k-total').textContent = fmtMoney(p + b + w);
+    var yp = sumRange(mo.prod, 0, YEAR_END), yb = sumRange(mo.tbp, 0, YEAR_END), yw = sumRange(mo.wf, 0, YEAR_END);
+    __SR.getElementById('y-prod').textContent = fmtMoney(yp);
+    __SR.getElementById('y-tbp').textContent = fmtMoney(yb);
+    __SR.getElementById('y-wf').textContent = fmtMoney(yw);
+    __SR.getElementById('y-total').textContent = fmtMoney(yp + yb + yw);
+    readout.textContent = 'Survolez une barre pour voir le détail du mois.';
+    drawChart(mo);
+  }
+
+  function renderStatus() {
+    var counts = {};
+    STATUS_ORDER.forEach(function (k) { counts[k] = 0; });
+    PROJECTS.forEach(function (p) { counts[statusOf(p).key]++; });
+    var tiles = __SR.getElementById('stiles');
+    tiles.replaceChildren.apply(tiles, STATUS_ORDER.map(function (k) {
+      var b = el('button', { type: 'button', 'class': 'stile', 'aria-pressed': String(state.filter === k) });
+      b.appendChild(el('span', { 'class': 'l' }, k));
+      b.appendChild(el('b', {}, String(counts[k])));
+      b.addEventListener('click', function () { state.filter = state.filter === k ? null : k; renderStatus(); });
+      return b;
+    }));
+    var rows = PROJECTS.filter(function (p) { return !state.filter || statusOf(p).key === state.filter; })
+      .sort(function (a, b) {
+        var sa = STATUS_ORDER.indexOf(statusOf(a).key), sb = STATUS_ORDER.indexOf(statusOf(b).key);
+        return sa - sb || a.name.localeCompare(b.name);
+      });
+    var body = __SR.getElementById('st-body');
+    body.replaceChildren.apply(body, rows.map(function (p) {
+      var st = statusOf(p), tr = document.createElement('tr');
+      tr.appendChild(el('td', {}, p.name));
+      var td = document.createElement('td');
+      td.appendChild(el('span', { 'class': 'chip ' + st.cls }, st.key));
+      tr.appendChild(td);
+      tr.appendChild(el('td', { 'class': 'n' }, p.signed ? planned(p) + ' %' : '—'));
+      tr.appendChild(el('td', { 'class': 'n' }, p.signed ? p.act + ' %' : '—'));
+      tr.appendChild(el('td', { 'class': 'n' }, st.gap == null ? '—' : (st.gap > 0 ? '+' : st.gap < 0 ? '−' : '') + Math.abs(st.gap) + ' pts'));
+      tr.appendChild(el('td', { 'class': 'n' }, fmtFull(p.v)));
+      return tr;
+    }));
+    __SR.getElementById('st-caption').textContent = 'Avancement des projets' + (state.filter ? ' : ' + state.filter : '');
+  }
+
+  function render() { renderForecast(); renderStatus(); }
+  window.__fc = { monthly: monthly, statusOf: statusOf, PROJECTS: PROJECTS, state: state, CUR: CUR };
+  render();
+};
+INIT['expenses'] = function (__SR) {
+  var PAYMENTS = [
+    { id: 1, emp: 'Ana Rivera', date: '2026-09-30', cents: 111460 },
+    { id: 2, emp: 'Ana Rivera', date: '2026-10-31', cents: 10000 },
+    { id: 3, emp: 'Ben Okafor', date: '2026-08-31', cents: 45000 },
+    { id: 4, emp: 'Ben Okafor', date: '2026-10-31', cents: 81850 },
+    { id: 5, emp: 'Chloé Martin', date: '2026-09-30', cents: 123990 },
+    { id: 6, emp: 'Dev Patel', date: '2026-10-31', cents: 50000 },
+    { id: 7, emp: 'Elena Rossi', date: '2026-10-31', cents: 53000 }
+  ];
+  var EXPENSES = [
+    { emp: 'Ana Rivera', code: 'EX-101', date: '2026-08-04', title: 'Vol Paris–New York', cents: 61240 },
+    { emp: 'Ana Rivera', code: 'EX-101', date: '2026-08-04', title: 'Taxi aéroport', cents: 4820 },
+    { emp: 'Ana Rivera', code: 'EX-101', date: '2026-08-05', title: 'Hôtel 2 nuits', cents: 38900 },
+    { emp: 'Ana Rivera', code: 'EX-102', date: '2026-08-19', title: 'Abonnement téléphone mobile', cents: 6500 },
+    { emp: 'Ana Rivera', code: 'EX-103', date: '2026-09-10', title: 'Déjeuner client', cents: 8430 },
+    { emp: 'Ana Rivera', code: 'EX-103', date: '2026-09-10', title: 'Impression flyers salon', cents: 21000 },
+    { emp: 'Ben Okafor', code: 'EX-201', date: '2026-07-15', title: 'Formation SQL en ligne', cents: 45000 },
+    { emp: 'Ben Okafor', code: 'EX-202', date: '2026-08-22', title: 'Conseil juridique contrat', cents: 70000 },
+    { emp: 'Ben Okafor', code: 'EX-203', date: '2026-09-05', title: 'Billet train Lyon', cents: 9600 },
+    { emp: 'Ben Okafor', code: 'EX-203', date: '2026-09-05', title: 'Péage', cents: 2250 },
+    { emp: 'Chloé Martin', code: 'EX-301', date: '2026-09-02', title: 'Campagne publicitaire réseaux sociaux', cents: 120000 },
+    { emp: 'Chloé Martin', code: 'EX-302', date: '2026-09-18', title: 'Forfait internet bureau', cents: 3990 },
+    { emp: 'Chloé Martin', code: 'EX-303', date: '2026-10-08', title: 'Hôtel séminaire', cents: 54000 },
+    { emp: 'Chloé Martin', code: 'EX-303', date: '2026-10-08', title: 'Dîner équipe', cents: 12680 },
+    { emp: 'Dev Patel', code: 'EX-401', date: '2026-08-12', title: 'Vol Londres', cents: 28800 },
+    { emp: 'Dev Patel', code: 'EX-401', date: '2026-08-13', title: 'Hôtel Londres', cents: 41000 },
+    { emp: 'Dev Patel', code: 'EX-402', date: '2026-09-25', title: 'Cours d’anglais professionnel', cents: 30000 },
+    { emp: 'Elena Rossi', code: 'EX-501', date: '2026-09-14', title: 'Abonnement logiciel visioconférence', cents: 18000 },
+    { emp: 'Elena Rossi', code: 'EX-502', date: '2026-09-28', title: 'Frais de dossier juridique', cents: 35000 },
+    { emp: 'Farid Haddad', code: 'EX-601', date: '2026-10-03', title: 'Billet avion Madrid', cents: 24000 },
+    { emp: 'Farid Haddad', code: 'EX-601', date: '2026-10-03', title: 'Taxi', cents: 3600 }
+  ];
+  var RULES = [
+    ['Travel', 'Flights', ['vol\\b', 'avion', 'flight']],
+    ['Travel', 'Hotel', ['hotel']],
+    ['Travel', 'Ground transport', ['taxi', 'train\\b', 'peage', 'uber']],
+    ['Travel', 'Meals', ['dejeuner', 'diner', 'repas', 'restaurant']],
+    ['Marketing', 'Print', ['impression', 'flyer']],
+    ['Marketing', 'Events', ['salon', 'evenement']],
+    ['Marketing', 'Advertising', ['publicit', 'campagne']],
+    ['Telecom/Admin', 'Mobile', ['telephone', 'mobile']],
+    ['Telecom/Admin', 'Internet', ['internet', 'forfait']],
+    ['Telecom/Admin', 'Software', ['logiciel', 'abonnement', 'licence']],
+    ['Training', 'Courses', ['formation', 'cours\\b']],
+    ['Legal', 'Legal fees', ['juridique', 'avocat']]
+  ];
+  var RULE_RE = RULES.map(function (r) {
+    return { cat: r[0], sub: r[1], kws: r[2], res: r[2].map(function (k) { return new RegExp('\\b' + k); }) };
+  });
+
+  var included = {};
+  function resetIncluded() { PAYMENTS.forEach(function (p) { included[p.id] = true; }); }
+  resetIncluded();
+
+  var norm = function (s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+  function categorize(text) {
+    var t = norm(text);
+    for (var i = 0; i < RULE_RE.length; i++) {
+      var r = RULE_RE[i];
+      for (var j = 0; j < r.res.length; j++) {
+        var m = t.match(r.res[j]);
+        if (m) return { cat: r.cat, sub: r.sub, kw: m[0] };
+      }
+    }
+    return { cat: 'Uncategorized', sub: '—', kw: null };
+  }
+
+  var fmtMoney = function (c) { return (c / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $'; };
+  var fmtDate = function (iso) { var p = iso.split('-'); return p[2] + '/' + p[1] + '/' + p[0]; };
+
+  // Exact subset of unpaid expense codes whose totals equal a payment; fewest codes first
+  function findSubset(groups, target) {
+    var n = groups.length, masks = [];
+    for (var m = 1; m < (1 << n); m++) masks.push(m);
+    var pop = function (x) { var c = 0; while (x) { c += x & 1; x >>= 1; } return c; };
+    masks.sort(function (a, b) { return pop(a) - pop(b) || a - b; });
+    for (var k = 0; k < masks.length; k++) {
+      var sum = 0;
+      for (var i = 0; i < n; i++) if (masks[k] & (1 << i)) sum += groups[i].total;
+      if (sum === target) return masks[k];
+    }
+    return 0;
+  }
+
+  function reconcile() {
+    var emps = [];
+    EXPENSES.forEach(function (e) { if (emps.indexOf(e.emp) < 0) emps.push(e.emp); });
+    var out = [];
+    emps.forEach(function (emp) {
+      var lines = EXPENSES.map(function (e, i) { return { i: i, e: e }; }).filter(function (x) { return x.e.emp === emp; });
+      var groups = [];
+      lines.forEach(function (x) {
+        var g = groups.filter(function (q) { return q.code === x.e.code; })[0];
+        if (!g) { g = { code: x.e.code, total: 0, first: x.e.date, paid: false }; groups.push(g); }
+        g.total += x.e.cents;
+      });
+      groups.sort(function (a, b) { return a.first < b.first ? -1 : a.first > b.first ? 1 : 0; });
+      var pays = PAYMENTS.filter(function (p) { return p.emp === emp && included[p.id]; })
+        .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+      var pool = 0;
+      pays.forEach(function (p) {
+        var open = groups.filter(function (g) { return !g.paid; });
+        var mask = open.length ? findSubset(open, p.cents) : 0;
+        if (mask) open.forEach(function (g, i) { if (mask & (1 << i)) g.paid = true; });
+        else pool += p.cents;
+      });
+      var res = {};
+      lines.forEach(function (x) {
+        var g = groups.filter(function (q) { return q.code === x.e.code; })[0];
+        if (g.paid) res[x.i] = 0;
+      });
+      lines.filter(function (x) { return res[x.i] === undefined; })
+        .sort(function (a, b) { return a.e.date < b.e.date ? -1 : a.e.date > b.e.date ? 1 : a.i - b.i; })
+        .forEach(function (x) {
+          var cover = Math.min(x.e.cents, pool);
+          pool -= cover;
+          res[x.i] = x.e.cents - cover;
+        });
+      lines.forEach(function (x) {
+        var c = categorize(x.e.title);
+        out.push({
+          emp: emp, code: x.e.code, date: x.e.date, title: x.e.title, cents: x.e.cents,
+          cat: c.cat, sub: c.sub, remaining: res[x.i], paid: res[x.i] === 0
+        });
+      });
+    });
+    return out;
+  }
+
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function fill(tbody, rows) { tbody.replaceChildren.apply(tbody, rows); }
+  function row(cells) {
+    var tr = document.createElement('tr');
+    cells.forEach(function (c) {
+      var td = document.createElement('td');
+      if (c.cls) td.className = c.cls;
+      if (c.node) td.appendChild(c.node); else td.textContent = c.t;
+      tr.appendChild(td);
+    });
+    return tr;
+  }
+
+  // Inputs
+  fill(__SR.getElementById('exp-body'), EXPENSES.map(function (e) {
+    return row([{ t: e.emp }, { t: e.code }, { t: fmtDate(e.date) }, { t: e.title }, { t: fmtMoney(e.cents), cls: 'n' }]);
+  }));
+  fill(__SR.getElementById('pay-body'), PAYMENTS.map(function (p) {
+    var cb = el('input', { type: 'checkbox', id: 'pay-' + p.id, 'aria-label': 'Inclure le paiement de ' + p.emp + ' du ' + fmtDate(p.date) });
+    cb.checked = true;
+    cb.addEventListener('change', function () { included[p.id] = cb.checked; render(); });
+    return row([{ node: cb }, { t: p.emp }, { t: fmtDate(p.date) }, { t: fmtMoney(p.cents), cls: 'n' }]);
+  }));
+  __SR.getElementById('reset').addEventListener('click', function () {
+    resetIncluded();
+    PAYMENTS.forEach(function (p) { __SR.getElementById('pay-' + p.id).checked = true; });
+    render();
+  });
+
+  // Tabs
+  var tab = 'check';
+  var TABS = { check: 't-check', paid: 't-paid', pend: 't-pend', qb: 't-qb' };
+  Object.keys(TABS).forEach(function (k) {
+    __SR.getElementById(TABS[k]).addEventListener('click', function () { tab = k; render(); });
+  });
+
+  var statusChip = function (paid) { return el('span', { 'class': 'chip ' + (paid ? 'ok' : 'risk') }, paid ? 'Paid' : 'Not Paid'); };
+
+  function table(heads, rows) {
+    var t = document.createElement('table');
+    var thead = document.createElement('thead'), hr = document.createElement('tr');
+    heads.forEach(function (h) { hr.appendChild(el('th', h.n ? { 'class': 'n' } : {}, h.t)); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = document.createElement('tbody');
+    rows.forEach(function (r) { tb.appendChild(r); });
+    t.appendChild(tb);
+    return t;
+  }
+
+  function csvOf(lines) {
+    var q = function (s) { return '"' + String(s).replace(/"/g, '""') + '"'; };
+    var rows = [['Employee Name', 'Expense Code', 'Date', 'Amount', 'Category', 'Subcategory'].map(q).join(',')];
+    lines.forEach(function (l) {
+      rows.push([q(l.emp), q(l.code), l.date, (l.cents / 100).toFixed(2), q(l.cat), q(l.sub)].join(','));
+    });
+    return rows.join('\n');
+  }
+
+  var copybtn = __SR.getElementById('copybtn'), copymsg = __SR.getElementById('copymsg');
+  var copyout = __SR.getElementById('copyout'), copyrow = __SR.getElementById('copyrow');
+  var currentCsv = '';
+  copybtn.addEventListener('click', function () {
+    copymsg.textContent = '';
+    var done = function () { copymsg.textContent = 'CSV copié.'; };
+    var fallback = function () {
+      copyout.hidden = false; copyout.value = currentCsv; copyout.focus(); copyout.select();
+      copymsg.textContent = 'Copie automatique impossible ici : le texte est sélectionné, copiez-le avec Ctrl+C.';
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(currentCsv).then(done, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  });
+
+  function render() {
+    var data = reconcile();
+    var paidL = data.filter(function (l) { return l.paid; });
+    var unpaidL = data.filter(function (l) { return !l.paid; });
+    var amt = paidL.reduce(function (a, l) { return a + l.cents; }, 0);
+    var partial = unpaidL.reduce(function (a, l) { return a + (l.cents - l.remaining); }, 0);
+    var rem = unpaidL.reduce(function (a, l) { return a + l.remaining; }, 0);
+    __SR.getElementById('s-paid').textContent = String(paidL.length);
+    __SR.getElementById('s-unpaid').textContent = String(unpaidL.length);
+    __SR.getElementById('s-amt').textContent = fmtMoney(amt + partial);
+    __SR.getElementById('s-rem').textContent = fmtMoney(rem);
+
+    Object.keys(TABS).forEach(function (k) { __SR.getElementById(TABS[k]).setAttribute('aria-selected', String(k === tab)); });
+    var host = __SR.getElementById('out-table');
+    copyrow.hidden = tab !== 'qb';
+    if (tab !== 'qb') { copyout.hidden = true; copymsg.textContent = ''; }
+
+    var base = [{ t: 'Employee' }, { t: 'Code' }, { t: 'Date' }, { t: 'Detail' }, { t: 'Amount', n: 1 }, { t: 'Category' }, { t: 'Subcategory' }];
+    var baseCells = function (l) {
+      return [{ t: l.emp }, { t: l.code }, { t: fmtDate(l.date) }, { t: l.title }, { t: fmtMoney(l.cents), cls: 'n' }, { t: l.cat }, { t: l.sub }];
+    };
+    var content;
+    if (tab === 'check') {
+      content = table(base.concat([{ t: 'Status' }, { t: 'Remaining', n: 1 }]), data.map(function (l) {
+        return row(baseCells(l).concat([{ node: statusChip(l.paid) }, { t: l.paid ? '—' : fmtMoney(l.remaining), cls: 'n' }]));
+      }));
+    } else if (tab === 'paid') {
+      content = paidL.length ? table(base, paidL.map(function (l) { return row(baseCells(l)); })) : null;
+    } else if (tab === 'pend') {
+      content = unpaidL.length ? table(base.concat([{ t: 'Remaining', n: 1 }]), unpaidL.map(function (l) {
+        return row(baseCells(l).concat([{ t: fmtMoney(l.remaining), cls: 'n' }]));
+      })) : null;
+    } else {
+      currentCsv = csvOf(paidL);
+      content = paidL.length ? table(
+        [{ t: 'Employee Name' }, { t: 'Expense Code' }, { t: 'Date' }, { t: 'Amount', n: 1 }, { t: 'Category' }, { t: 'Subcategory' }],
+        paidL.map(function (l) { return row([{ t: l.emp }, { t: l.code }, { t: l.date }, { t: (l.cents / 100).toFixed(2), cls: 'n' }, { t: l.cat }, { t: l.sub }]); })
+      ) : null;
+    }
+    if (content) host.replaceChildren(content);
+    else host.replaceChildren(el('p', { 'class': 'empty' }, 'Aucune ligne dans cette feuille avec les paiements actuels.'));
+  }
+
+  // Keyword tester
+  var kw = __SR.getElementById('kw'), kwr = __SR.getElementById('kw-result');
+  function renderKw() {
+    var r = categorize(kw.value);
+    var mk = function (label, value) { var s = document.createElement('span'); s.appendChild(document.createTextNode(label + ' ')); s.appendChild(el('b', {}, value)); return s; };
+    if (!kw.value.trim()) { kwr.replaceChildren(el('span', {}, 'Saisissez un libellé de dépense.')); return; }
+    kwr.replaceChildren(mk('Catégorie', r.cat), mk('Sous-catégorie', r.sub), mk('Mot-clé reconnu', r.kw ? r.kw : 'aucun, à classer à la main'));
+  }
+  kw.addEventListener('input', renderKw);
+  fill(__SR.getElementById('rules-body'), RULES.map(function (r) {
+    return row([{ t: r[0] }, { t: r[1] }, { t: r[2].map(function (k) { return k.replace('\\b', ''); }).join(', ') }]);
+  }));
+
+  window.__ex = { reconcile: reconcile, categorize: categorize, included: included };
+  render(); renderKw();
+};
+INIT['billing'] = function (__SR) {
+  var PROJECTS = [
+    { id: 1, client: 'Altair Retail', name: 'Data platform', type: 'Milestone', start: '2026-06-01', value: 300000,
+      phases: [[30, 0, 'Lancement'], [40, 3, 'Revue intermédiaire'], [30, 6, 'Livraison']], actual: 90000 },
+    { id: 2, client: 'Brightwave Energy', name: 'Forecasting model', type: 'Milestone', start: '2026-08-15', value: 180000,
+      phases: [[50, 0, 'Lancement'], [50, 3, 'Livraison']], actual: 90000 },
+    { id: 3, client: 'Cedar Health', name: 'Reporting automation', type: 'Milestone', start: '2026-03-01', value: 120000,
+      phases: [[25, 0, 'Phase 1'], [25, 2, 'Phase 2'], [25, 4, 'Phase 3'], [25, 6, 'Phase 4']], actual: 90000 },
+    { id: 4, client: 'Delta Foods', name: 'Dashboard rollout', type: 'Milestone', start: '2026-10-01', value: 240000,
+      phases: [[40, 0, 'Lancement'], [30, 2, 'Version bêta'], [30, 4, 'Livraison']], actual: 96000 },
+    { id: 5, client: 'Echo Mobility', name: 'Data migration', type: 'Milestone', start: '2026-11-10', value: 150000,
+      phases: [[50, 0, 'Lancement'], [50, 3, 'Livraison']], actual: 0 },
+    { id: 6, client: 'Fjord Mobility', name: 'Analytics support', type: 'Time & Material', start: '2026-09-01', value: 90000 },
+    { id: 7, client: 'Granite Capital', name: 'Managed reporting', type: 'Recurring', start: '2026-10-01', value: 144000, months: 12 },
+    { id: 8, client: 'Harbor Education', name: 'Support retainer', type: 'Recurring', start: '2026-11-15', value: 60000, months: 6 }
+  ];
+
+  var state = { ref: '2026-11-03', cut: '2099-12-31', proj: 'all', actual: {}, tab: 'inv' };
+  function resetState() {
+    state.ref = '2026-11-03'; state.cut = '2099-12-31'; state.proj = 'all'; state.tab = 'inv';
+    PROJECTS.forEach(function (p) { if (p.type === 'Milestone') state.actual[p.id] = p.actual; });
+  }
+  resetState();
+
+  // Dates as ISO strings; whole days in UTC
+  var toUTC = function (iso) { var p = iso.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); };
+  var addMonths = function (iso, n) {
+    var p = iso.split('-'), d = new Date(Date.UTC(+p[0], +p[1] - 1 + n, +p[2]));
+    return d.toISOString().slice(0, 10);
+  };
+  var daysBetween = function (a, b) { return Math.round((toUTC(b) - toUTC(a)) / 86400000); };
+  var fmtDate = function (iso) { var p = iso.split('-'); return p[2] + '/' + p[1] + '/' + p[0]; };
+  var fmtMoney = function (v) { return Math.round(v).toLocaleString('fr-FR') + ' $'; };
+
+  function statusFor(date, ref) {
+    var d = daysBetween(ref, date);
+    if (d < 0) return 'Overdue';
+    if (d <= 14) return 'Coming Soon';
+    return 'Upcoming';
+  }
+
+  // Invoices_alerts: one row per billing phase
+  function schedule() {
+    var rows = [];
+    PROJECTS.forEach(function (p) {
+      if (p.type === 'Milestone') {
+        var cum = 0, actual = state.actual[p.id];
+        p.phases.forEach(function (ph, i) {
+          var amount = Math.round(p.value * ph[0] / 100);
+          cum += amount;
+          var date = addMonths(p.start, ph[1]);
+          var billed = actual >= cum;
+          var remaining = billed ? 0 : Math.min(amount, cum - actual);
+          rows.push({ pid: p.id, client: p.client, project: p.name, type: p.type, phase: ph[2], date: date,
+            amount: amount, expected: cum, remaining: remaining,
+            status: billed ? 'Billed' : statusFor(date, state.ref) });
+        });
+      } else if (p.type === 'Recurring') {
+        var each = p.value / p.months;
+        for (var m = 0; m < p.months; m++) {
+          var d = addMonths(p.start, m), future = daysBetween(state.ref, d) >= 0;
+          rows.push({ pid: p.id, client: p.client, project: p.name, type: p.type, phase: 'Mois ' + (m + 1) + '/' + p.months,
+            date: d, amount: each, expected: each * (m + 1), remaining: future ? each : 0,
+            status: future ? statusFor(d, state.ref) : 'N/A' });
+        }
+      }
+    });
+    return rows;
+  }
+
+  var SEVERITY = ['Overdue', 'Coming Soon', 'Upcoming', 'Billed', 'N/A'];
+  function summary(rows) {
+    return PROJECTS.map(function (p) {
+      var mine = rows.filter(function (r) { return r.pid === p.id; });
+      if (p.type === 'Time & Material') {
+        return { p: p, invoiced: null, remaining: null, next: null, status: 'Manual' };
+      }
+      var open = mine.filter(function (r) { return r.remaining > 0; });
+      var worst = 'Billed';
+      mine.forEach(function (r) { if (SEVERITY.indexOf(r.status) < SEVERITY.indexOf(worst) && r.status !== 'N/A') worst = r.status; });
+      return {
+        p: p,
+        invoiced: p.type === 'Milestone' ? state.actual[p.id] : null,
+        remaining: open.reduce(function (a, r) { return a + r.remaining; }, 0),
+        next: open.length ? open[0].date : null,
+        status: open.length ? worst : 'Billed'
+      };
+    });
+  }
+
+  function totals(rows) {
+    var inCut = function (r) { return r.date <= state.cut; };
+    var sum = function (arr) { return arr.reduce(function (a, r) { return a + r.remaining; }, 0); };
+    var over = rows.filter(function (r) { return r.status === 'Overdue'; });
+    var soon = rows.filter(function (r) { return r.status === 'Coming Soon' && inCut(r); });
+    var up = rows.filter(function (r) { return r.status === 'Upcoming' && inCut(r); });
+    var overCut = over.filter(inCut);
+    return { over: sum(over), soon: sum(soon), up: sum(up), total: sum(overCut) + sum(soon) + sum(up) };
+  }
+
+  var CHIP = { 'Billed': 'ok', 'Overdue': 'risk', 'Coming Soon': 'late', 'Upcoming': 'up', 'N/A': 'up', 'Manual': 'up' };
+
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function row(cells) {
+    var tr = document.createElement('tr');
+    cells.forEach(function (c) {
+      var td = document.createElement('td');
+      if (c.cls) td.className = c.cls;
+      if (c.node) td.appendChild(c.node); else td.textContent = c.t;
+      tr.appendChild(td);
+    });
+    return tr;
+  }
+  function table(heads, rows) {
+    var t = document.createElement('table'), thead = document.createElement('thead'), hr = document.createElement('tr');
+    heads.forEach(function (h) { hr.appendChild(el('th', h.n ? { 'class': 'n' } : {}, h.t)); });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = document.createElement('tbody');
+    rows.forEach(function (r) { tb.appendChild(r); });
+    t.appendChild(tb);
+    return t;
+  }
+  var chip = function (s) { return el('span', { 'class': 'chip ' + CHIP[s] }, s); };
+
+  // Controls
+  var selProj = __SR.getElementById('proj'), inActual = __SR.getElementById('actual'), hint = __SR.getElementById('hint');
+  selProj.appendChild(el('option', { value: 'all' }, 'Tous les projets'));
+  PROJECTS.forEach(function (p) { selProj.appendChild(el('option', { value: String(p.id) }, p.client + ' · ' + p.name)); });
+  selProj.addEventListener('change', function () { state.proj = selProj.value; render(); });
+  inActual.addEventListener('input', function () {
+    var p = PROJECTS.filter(function (q) { return String(q.id) === state.proj; })[0];
+    if (!p || p.type !== 'Milestone' || inActual.value === '') return;
+    state.actual[p.id] = Math.max(0, Math.min(p.value, Number(inActual.value)));
+    render(false);
+  });
+  inActual.addEventListener('blur', function () { render(); });
+  var inRef = __SR.getElementById('ref');
+  inRef.addEventListener('change', function () {
+    if (inRef.value && inRef.validity.valid) { state.ref = inRef.value; render(); }
+  });
+  inRef.addEventListener('blur', function () { inRef.value = state.ref; });
+  __SR.getElementById('cut').addEventListener('change', function (e) { state.cut = e.target.value; render(); });
+  __SR.getElementById('reset').addEventListener('click', function () { resetState(); render(); });
+  __SR.getElementById('t-inv').addEventListener('click', function () { state.tab = 'inv'; render(); });
+  __SR.getElementById('t-sum').addEventListener('click', function () { state.tab = 'sum'; render(); });
+
+  function render(syncInput) {
+    var rows = schedule(), t = totals(rows);
+    __SR.getElementById('k-over').textContent = fmtMoney(t.over);
+    __SR.getElementById('k-soon').textContent = fmtMoney(t.soon);
+    __SR.getElementById('k-up').textContent = fmtMoney(t.up);
+    __SR.getElementById('k-total').textContent = fmtMoney(t.total);
+
+    selProj.value = state.proj;
+    inRef.value = state.ref;
+    __SR.getElementById('cut').value = state.cut;
+    var p = PROJECTS.filter(function (q) { return String(q.id) === state.proj; })[0];
+    var editable = !!p && p.type === 'Milestone';
+    inActual.disabled = !editable;
+    if (editable) { inActual.max = String(p.value); if (syncInput !== false) inActual.value = String(state.actual[p.id]); }
+    else inActual.value = '';
+    hint.textContent = !p ? 'Choisissez un projet à jalons pour modifier son montant déjà facturé.'
+      : editable ? 'Contrat de ' + fmtMoney(p.value) + '. Ce montant vient normalement d’Everwin.'
+      : p.type === 'Recurring' ? 'Projet récurrent : pas de rapprochement avec un montant facturé.'
+      : 'Projet en régie : calendrier géré à la main, aucune échéance calculée.';
+
+    __SR.getElementById('t-inv').setAttribute('aria-selected', String(state.tab === 'inv'));
+    __SR.getElementById('t-sum').setAttribute('aria-selected', String(state.tab === 'sum'));
+    var host = __SR.getElementById('out-table'), content;
+    var pick = function (r) { return state.proj === 'all' || String(r.pid) === state.proj; };
+    if (state.tab === 'inv') {
+      var shown = rows.filter(pick);
+      content = shown.length ? table(
+        [{ t: 'Client' }, { t: 'Projet' }, { t: 'Type' }, { t: 'Phase' }, { t: 'Échéance' }, { t: 'Montant', n: 1 }, { t: 'Expected Invoiced Amount', n: 1 }, { t: 'Remaining to Invoice', n: 1 }, { t: 'Invoicing Status' }],
+        shown.map(function (r) {
+          return row([{ t: r.client }, { t: r.project }, { t: r.type }, { t: r.phase }, { t: fmtDate(r.date) },
+            { t: fmtMoney(r.amount), cls: 'n' }, { t: fmtMoney(r.expected), cls: 'n' }, { t: fmtMoney(r.remaining), cls: 'n' }, { node: chip(r.status) }]);
+        })) : null;
+    } else {
+      content = table(
+        [{ t: 'Client' }, { t: 'Projet' }, { t: 'Type' }, { t: 'Début' }, { t: 'Contrat', n: 1 }, { t: 'Déjà facturé', n: 1 }, { t: 'Reste à facturer', n: 1 }, { t: 'Prochaine échéance' }, { t: 'Statut' }],
+        summary(rows).filter(function (s) { return state.proj === 'all' || String(s.p.id) === state.proj; }).map(function (s) {
+          return row([{ t: s.p.client }, { t: s.p.name }, { t: s.p.type }, { t: fmtDate(s.p.start) }, { t: fmtMoney(s.p.value), cls: 'n' },
+            { t: s.invoiced == null ? '—' : fmtMoney(s.invoiced), cls: 'n' }, { t: s.remaining == null ? '—' : fmtMoney(s.remaining), cls: 'n' },
+            { t: s.next ? fmtDate(s.next) : '—' }, { node: chip(s.status === 'Manual' ? 'Manual' : s.status) }]);
+        }));
+    }
+    if (content) host.replaceChildren(content);
+    else host.replaceChildren(el('p', { 'class': 'empty' }, 'Ce projet en régie n’a pas de calendrier : il est géré à la main.'));
+  }
+
+  window.__bl = { schedule: schedule, summary: summary, totals: totals, state: state, statusFor: statusFor };
+  render();
+};
+  var names = ['forecast', 'expenses', 'billing'], ready = {};
+  function show(n) {
+    if (names.indexOf(n) < 0) n = 'forecast';
+    names.forEach(function (k) {
+      document.getElementById('tab-' + k).setAttribute('aria-selected', String(k === n));
+      document.getElementById('host-' + k).hidden = k !== n;
+    });
+    if (!ready[n]) {
+      ready[n] = true;
+      var host = document.getElementById('host-' + n);
+      var sr = host.attachShadow({ mode: 'open' });
+      sr.appendChild(document.getElementById('tpl-' + n).content.cloneNode(true));
+      INIT[n](sr);
+    }
+  }
+  names.forEach(function (k) {
+    document.getElementById('tab-' + k).addEventListener('click', function () {
+      show(k);
+      try { history.replaceState(null, '', '#' + k); } catch (e) {}
+    });
+  });
+  window.addEventListener('hashchange', function () { var h = location.hash.slice(1); if (names.indexOf(h) >= 0 && document.getElementById('tab-' + h).getAttribute('aria-selected') !== 'true') show(h); });
+  var start = location.hash.slice(1);
+  if (!start) { try { start = sessionStorage.getItem('lsTab') || ''; sessionStorage.removeItem('lsTab'); } catch (e) {} }
+  show(start);
+})();
+</script>

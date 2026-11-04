@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumora Skies – Operations dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+</head><body>
+<a href="index.html" style="display:block;max-width:1200px;margin:0 auto;padding:10px 12px;color:#f6b200;font:600 .85rem Nunito,system-ui,sans-serif;text-decoration:none">← Portfolio</a>
+<style>
+body { margin:0; background:#000; }
+.ls { --amber:#f6b200; --amber-d:#c98f00; --ink:#fff; --panel:#424242; --bg:#000; --line:#2a2a2a;
+  background:var(--bg); color:var(--ink); font-family:"Nunito","Segoe UI",system-ui,sans-serif; max-width:1200px; margin-inline:auto; }
+.ls * { box-sizing:border-box; }
+.ls-head { background:var(--amber); display:flex; flex-wrap:wrap; align-items:stretch; gap:12px 20px; }
+.ls-logo { background:#fff; width:92px; min-height:92px; display:flex; align-items:center; justify-content:center; flex:none; }
+.ls-titles { flex:1 1 220px; display:flex; flex-direction:column; justify-content:center; padding:8px 0; }
+.ls-titles h1 { margin:0; font-size:clamp(1.4rem,4vw,2.1rem); line-height:1.05; font-weight:800; text-transform:uppercase; letter-spacing:.01em; color:#fff; }
+.ls-brand { font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#3a2b00; margin-top:6px; }
+.ls-ctl { flex:1 1 300px; max-width:520px; margin:10px 12px 10px 0; padding:8px; border:3px solid #6a6a6a; border-radius:12px; background:#2f2f2f;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.ls-ctl label { display:block; }
+.ls-ctl select, .ls-period { width:100%; height:34px; border:0; border-radius:10px; background:#434343; color:var(--amber); font:inherit; font-size:.95rem; padding:0 10px; box-shadow:0 2px 4px #0008; }
+.ls-period { display:flex; align-items:center; }
+.ls-tabs { display:flex; gap:6px; padding:10px 12px 0; background:var(--bg); }
+.ls-tabs button { appearance:none; border:1px solid var(--line); border-bottom:0; background:#161616; color:#bbb; font:inherit; font-size:.85rem; font-weight:600; padding:8px 14px; border-radius:8px 8px 0 0; cursor:pointer; }
+.ls-tabs button[aria-selected="true"] { background:var(--amber); color:#1a1300; border-color:var(--amber); }
+.ls-page[hidden] { display:none; }
+.ls-mapbox { position:relative; margin:0 12px; border:1px solid var(--line); background:#0b0b0b; }
+.ls-map { min-height:420px; position:relative; }
+.ls-map svg { display:block; width:100%; height:auto; }
+.ls-tip { position:absolute; pointer-events:none; background:#fff; color:#222; border-radius:3px; padding:8px 10px; font-size:.78rem; line-height:1.5; box-shadow:0 2px 8px #0009; opacity:0; z-index:3; white-space:nowrap; }
+.ls-tip b { font-weight:700; }
+.ls-legend { display:flex; flex-wrap:wrap; gap:6px 22px; padding:10px 14px 14px; font-size:.78rem; color:var(--amber); align-items:center; }
+.ls-legend span.k { display:inline-flex; align-items:center; gap:6px; }
+.ls-dot { width:11px; height:11px; border-radius:50%; display:inline-block; }
+.ls-bar { margin:14px 12px 0; background:var(--panel); border-radius:10px; text-align:center; font-size:1.25rem; font-weight:700; padding:9px; }
+.ls-grid3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:18px 28px; padding:22px 28px 26px; }
+.ls-perf { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:18px 28px; padding:22px 28px 26px; }
+.ls-tile { border:3px solid #fff; border-radius:8px; background:#000; text-align:center; padding:10px 8px 8px; min-height:104px; display:flex; flex-direction:column; justify-content:center; }
+.ls-tile .l { color:var(--amber); font-size:1rem; }
+.ls-tile b { color:var(--amber); font-weight:400; font-size:clamp(1.9rem,5vw,2.7rem); line-height:1.15; font-variant-numeric:tabular-nums; font-family:"Nunito","Segoe UI",system-ui,sans-serif; }
+.ls-foot { padding:12px 16px 18px; color:#777; font-size:.72rem; }
+.ls [data-dash-source-state="empty"] { color:transparent; }
+.ls [data-dash-source-state="refreshing"] { opacity:.55; transition:opacity var(.3s); }
+</style>
+
+<div class="ls" id="ls-root">
+  <header class="ls-head">
+    <div class="ls-logo" aria-label="Lumora Skies logo">
+      <svg viewBox="0 0 64 64" width="58" height="58" role="img" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" fill="none" stroke="#2b2b2b" stroke-width="6"/>
+        <path d="M44 14a22 22 0 1 0 0 36a17 17 0 1 1 0-36z" fill="#f6b200"/>
+        <circle cx="46" cy="32" r="3.6" fill="#2b2b2b"/>
+      </svg>
+    </div>
+    <div class="ls-titles">
+      <h1 id="ls-title-map">Flight<br>world map</h1>
+      <h1 id="ls-title-kpi" hidden>Operational<br>indicators</h1>
+      <div class="ls-brand">Lumora Skies · sample data</div>
+    </div>
+    <div class="ls-ctl">
+      <div class="ls-period" aria-label="Period">Jan 1 – Dec 31, 2025</div>
+      <label><select data-draw="ftype" data-source="shows" aria-label="Flight type"></select></label>
+      <label style="grid-column:1 / -1"><select data-draw="showsel" data-source="shows" aria-label="Show name"></select></label>
+    </div>
+  </header>
+
+  <nav class="ls-tabs" aria-label="Pages">
+    <button type="button" data-tab="map" aria-selected="true">Flight world map</button>
+    <button type="button" data-tab="kpi" aria-selected="false">Operational indicators</button>
+  </nav>
+
+  <section class="ls-page" id="ls-page-map" data-page="map">
+    <div class="ls-mapbox">
+      <div class="ls-map" id="ls-map" data-draw="map" data-source="shows"></div>
+    </div>
+    <div class="ls-legend">
+      <span class="k" style="color:var(--amber);font-weight:600">Number of drones taking off</span>
+      <span class="k"><i class="ls-dot" style="background:#f2a24a"></i>Outdoor</span>
+      <span class="k"><i class="ls-dot" style="background:#f066b0"></i>Indoor</span>
+      <span class="k"><i class="ls-dot" style="background:#b57bee"></i>Unspecified</span>
+      <span class="k" style="color:#9a9a9a">Bubble area = drones taking off</span>
+    </div>
+  </section>
+
+  <section class="ls-page" id="ls-page-kpi" data-page="kpi" hidden>
+    <div class="ls-bar">Counts</div>
+    <div class="ls-grid3">
+      <div class="ls-tile"><span class="l">Flight hours (drones)</span><b data-draw="kpi" data-source="kpi" data-field="hours" data-fmt="int">—</b></div>
+      <div class="ls-tile"><span class="l">Number drones take off</span><b data-draw="kpi" data-source="kpi" data-field="takeoff" data-fmt="int">—</b></div>
+      <div class="ls-tile"><span class="l">Number of flights</span><b data-draw="kpi" data-source="kpi" data-field="flights" data-fmt="int">—</b></div>
+      <div class="ls-tile"><span class="l">Number flights with pyro</span><b data-draw="kpi" data-source="kpi" data-field="pyro_flights" data-fmt="int">—</b></div>
+      <div class="ls-tile"><span class="l">Number cancelled flights</span><b data-draw="kpi" data-source="kpi" data-field="cancelled" data-fmt="int">—</b></div>
+      <div class="ls-tile"><span class="l">Number lost drones</span><b data-draw="kpi" data-source="kpi" data-field="lost" data-fmt="int">—</b></div>
+    </div>
+    <div class="ls-bar">Performance</div>
+    <div class="ls-perf">
+      <div class="ls-tile"><span class="l">Score LED drones</span><b data-draw="kpi" data-source="kpi" data-field="led_score" data-fmt="pct">—</b></div>
+      <div class="ls-tile"><span class="l">Cancellation rate</span><b data-draw="kpi" data-source="kpi" data-field="cancel_rate" data-fmt="pct">—</b></div>
+      <div class="ls-tile"><span class="l">Recovery rate</span><b data-draw="kpi" data-source="kpi" data-field="recovery_rate" data-fmt="pct">—</b></div>
+      <div class="ls-tile"><span class="l">Score pyro drones</span><b data-draw="kpi" data-source="kpi" data-field="pyro_score" data-fmt="pct">—</b></div>
+      <div class="ls-tile"><span class="l">Fall rate</span><b data-draw="kpi" data-source="kpi" data-field="fall_rate" data-fmt="pct">—</b></div>
+    </div>
+  </section>
+
+  <div class="ls-foot">Fictional data for portfolio purposes — the shows, the brand and every figure are invented.</div>
+</div>
+
+<script src="world.js"></script>
+<script>
+window.SHOWS = [
+ {
+  "show": "Aurora Gala",
+  "city": "Orlando, US",
+  "lat": 28.54,
+  "lon": -81.38,
+  "type": "OUTDOOR",
+  "flights": 2150,
+  "takeoff": 666500,
+  "hours": 121982,
+  "cancelled": 101,
+  "lost": 182,
+  "recovered": 155,
+  "pyro_flights": 67,
+  "led_score": 0.9753,
+  "pyro_score": 0.9633
+ },
+ {
+  "show": "Neon Harbor",
+  "city": "Miami, US",
+  "lat": 25.76,
+  "lon": -80.19,
+  "type": "OUTDOOR",
+  "flights": 1480,
+  "takeoff": 384800,
+  "hours": 68753,
+  "cancelled": 69,
+  "lost": 98,
+  "recovered": 79,
+  "pyro_flights": 56,
+  "led_score": 0.9765,
+  "pyro_score": 0.981
+ },
+ {
+  "show": "Starfall Festival",
+  "city": "Las Vegas, US",
+  "lat": 36.17,
+  "lon": -115.14,
+  "type": "OUTDOOR",
+  "flights": 1320,
+  "takeoff": 316800,
+  "hours": 57831,
+  "cancelled": 91,
+  "lost": 90,
+  "recovered": 77,
+  "pyro_flights": 32,
+  "led_score": 0.9759,
+  "pyro_score": 0.9845
+ },
+ {
+  "show": "Midnight Carnival",
+  "city": "Los Angeles, US",
+  "lat": 34.05,
+  "lon": -118.24,
+  "type": "OUTDOOR",
+  "flights": 640,
+  "takeoff": 96000,
+  "hours": 16876,
+  "cancelled": 31,
+  "lost": 36,
+  "recovered": 29,
+  "pyro_flights": 14,
+  "led_score": 0.9742,
+  "pyro_score": 0.9808
+ },
+ {
+  "show": "Silver Coast Gala",
+  "city": "Charleston, US",
+  "lat": 32.78,
+  "lon": -79.93,
+  "type": "OUTDOOR",
+  "flights": 350,
+  "takeoff": 45500,
+  "hours": 8316,
+  "cancelled": 19,
+  "lost": 15,
+  "recovered": 13,
+  "pyro_flights": 9,
+  "led_score": 0.9693,
+  "pyro_score": 0.9634
+ },
+ {
+  "show": "Lumen Parade",
+  "city": "Paris, FR",
+  "lat": 48.86,
+  "lon": 2.35,
+  "type": "OUTDOOR",
+  "flights": 1890,
+  "takeoff": 623700,
+  "hours": 111363,
+  "cancelled": 100,
+  "lost": 220,
+  "recovered": 189,
+  "pyro_flights": 51,
+  "led_score": 0.9771,
+  "pyro_score": 0.9689
+ },
+ {
+  "show": "Crown Jubilee",
+  "city": "London, UK",
+  "lat": 51.51,
+  "lon": -0.13,
+  "type": "OUTDOOR",
+  "flights": 980,
+  "takeoff": 215600,
+  "hours": 37705,
+  "cancelled": 58,
+  "lost": 77,
+  "recovered": 66,
+  "pyro_flights": 47,
+  "led_score": 0.9855,
+  "pyro_score": 0.9788
+ },
+ {
+  "show": "Cobalt Nights",
+  "city": "Berlin, DE",
+  "lat": 52.52,
+  "lon": 13.4,
+  "type": "INDOOR",
+  "flights": 410,
+  "takeoff": 18450,
+  "hours": 3498,
+  "cancelled": 20,
+  "lost": 5,
+  "recovered": 4,
+  "pyro_flights": 0,
+  "led_score": 0.9831,
+  "pyro_score": null
+ },
+ {
+  "show": "Solstice Arena",
+  "city": "Madrid, ES",
+  "lat": 40.42,
+  "lon": -3.7,
+  "type": "OUTDOOR",
+  "flights": 520,
+  "takeoff": 88400,
+  "hours": 15097,
+  "cancelled": 32,
+  "lost": 29,
+  "recovered": 25,
+  "pyro_flights": 13,
+  "led_score": 0.9795,
+  "pyro_score": 0.9821
+ },
+ {
+  "show": "Atlas Skyline",
+  "city": "Barcelona, ES",
+  "lat": 41.39,
+  "lon": 2.17,
+  "type": "OUTDOOR",
+  "flights": 460,
+  "takeoff": 73600,
+  "hours": 13387,
+  "cancelled": 27,
+  "lost": 26,
+  "recovered": 22,
+  "pyro_flights": 14,
+  "led_score": 0.9848,
+  "pyro_score": 0.9837
+ },
+ {
+  "show": "Fjord Lights",
+  "city": "Oslo, NO",
+  "lat": 59.91,
+  "lon": 10.75,
+  "type": "OUTDOOR",
+  "flights": 190,
+  "takeoff": 17100,
+  "hours": 2928,
+  "cancelled": 12,
+  "lost": 6,
+  "recovered": 5,
+  "pyro_flights": 7,
+  "led_score": 0.9879,
+  "pyro_score": 0.9809
+ },
+ {
+  "show": "Harbor Lanterns",
+  "city": "Copenhagen, DK",
+  "lat": 55.68,
+  "lon": 12.57,
+  "type": "INDOOR",
+  "flights": 260,
+  "takeoff": 15600,
+  "hours": 2772,
+  "cancelled": 16,
+  "lost": 5,
+  "recovered": 4,
+  "pyro_flights": 0,
+  "led_score": 0.9772,
+  "pyro_score": null
+ },
+ {
+  "show": "Tidal Glow",
+  "city": "Lisbon, PT",
+  "lat": 38.72,
+  "lon": -9.14,
+  "type": "OUTDOOR",
+  "flights": 300,
+  "takeoff": 36000,
+  "hours": 6162,
+  "cancelled": 19,
+  "lost": 10,
+  "recovered": 8,
+  "pyro_flights": 8,
+  "led_score": 0.973,
+  "pyro_score": 0.971
+ },
+ {
+  "show": "Coral Expo",
+  "city": "San Juan, PR",
+  "lat": 18.47,
+  "lon": -66.11,
+  "type": "INDOOR",
+  "flights": 220,
+  "takeoff": 12100,
+  "hours": 2077,
+  "cancelled": 12,
+  "lost": 5,
+  "recovered": 4,
+  "pyro_flights": 0,
+  "led_score": 0.9857,
+  "pyro_score": null
+ },
+ {
+  "show": "Desert Mirage",
+  "city": "Dubai, AE",
+  "lat": 25.2,
+  "lon": 55.27,
+  "type": "OUTDOOR",
+  "flights": 780,
+  "takeoff": 218400,
+  "hours": 38344,
+  "cancelled": 43,
+  "lost": 83,
+  "recovered": 69,
+  "pyro_flights": 38,
+  "led_score": 0.9857,
+  "pyro_score": 0.984
+ },
+ {
+  "show": "Sicilian Dusk",
+  "city": "Palermo, IT",
+  "lat": 38.12,
+  "lon": 13.36,
+  "type": "OUTDOOR",
+  "flights": 240,
+  "takeoff": 24000,
+  "hours": 4191,
+  "cancelled": 12,
+  "lost": 7,
+  "recovered": 6,
+  "pyro_flights": 6,
+  "led_score": 0.9798,
+  "pyro_score": 0.968
+ },
+ {
+  "show": "Studio Prototype",
+  "city": "Atlanta, US",
+  "lat": 33.75,
+  "lon": -84.39,
+  "type": "UNSPECIFIED",
+  "flights": 150,
+  "takeoff": 4500,
+  "hours": 803,
+  "cancelled": 8,
+  "lost": 1,
+  "recovered": 1,
+  "pyro_flights": 0,
+  "led_score": 0.9871,
+  "pyro_score": null
+ }
+];
+(function () {
+  var params = {}, draws = {}, calcs = {}, cache = {};
+  function data(id) {
+    if (id === 'shows') return { status: 'ok', data: window.SHOWS };
+    if (!calcs[id]) return { status: 'error', data: [] };
+    if (!cache[id]) cache[id] = calcs[id].fn.apply(null, calcs[id].inputs.map(function (i) { return data(i).data; }));
+    return { status: 'ok', data: cache[id] };
+  }
+  function renderAll() {
+    Object.keys(draws).forEach(function (name) {
+      document.querySelectorAll('[data-draw="' + name + '"]').forEach(function (el) { draws[name](el); });
+    });
+  }
+  window.dash = {
+    params: function () { return params; },
+    setParams: function (p) { Object.keys(p).forEach(function (k) { if (p[k] == null) delete params[k]; else params[k] = p[k]; }); renderAll(); },
+    data: data,
+    calc: function (id, def) { calcs[id] = def; },
+    draw: function (name, fn) { draws[name] = fn; },
+    setLink: function () {}
+  };
+  window.addEventListener('load', renderAll);
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(renderAll, 150); });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const enc = (s) => String(s).replace(/[%&=]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+  const group = () => { const p = dash.params(); return p.show || p.ftype || 'ALL'; };
+  const rowsOf = (id) => { const g = dash.data(id); return g.status === 'ok' ? g.data : []; };
+  const fmt = { int: d3.format(','), pct: d3.format('.2%') };
+  const typeColor = { OUTDOOR: '#f2a24a', INDOOR: '#f066b0', UNSPECIFIED: '#b57bee' };
+  const typeLabel = { OUTDOOR: 'Outdoor', INDOOR: 'Indoor', UNSPECIFIED: 'Unspecified' };
+
+  dash.calc('kpi', {
+    title: 'Indicators by type and show',
+    description: 'Totals and rates for all shows, each flight type and each show.',
+    inputs: ['shows'],
+    fn: (shows) => {
+      const keys = ['ALL', ...new Set(shows.map((r) => r.type)), ...shows.map((r) => r.show)];
+      return keys.map((k) => {
+        const s = shows.filter((r) => k === 'ALL' || r.type === k || r.show === k);
+        const sum = (f) => s.reduce((a, r) => a + r[f], 0);
+        const flights = sum('flights'), takeoff = sum('takeoff'), cancelled = sum('cancelled'), lost = sum('lost');
+        const py = s.filter((r) => r.pyro_flights > 0);
+        const pw = py.reduce((a, r) => a + r.pyro_flights, 0);
+        return {
+          group: k, flights, takeoff, cancelled, lost,
+          hours: sum('hours'), pyro_flights: sum('pyro_flights'),
+          led_score: s.reduce((a, r) => a + r.led_score * r.takeoff, 0) / takeoff,
+          pyro_score: pw ? py.reduce((a, r) => a + r.pyro_score * r.pyro_flights, 0) / pw : null,
+          cancel_rate: cancelled / (flights + cancelled),
+          recovery_rate: lost ? sum('recovered') / lost : null,
+          fall_rate: lost / takeoff
+        };
+      });
+    }
+  });
+
+  // Tabs
+  const tabs = document.querySelectorAll('[data-tab]');
+  tabs.forEach((b) => b.addEventListener('click', () => {
+    const which = b.getAttribute('data-tab');
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t === b)));
+    document.querySelectorAll('[data-page]').forEach((p) => { p.hidden = p.getAttribute('data-page') !== which; });
+    document.querySelectorAll('#ls-title-map, #ls-title-kpi').forEach((h) => { h.hidden = h.id !== 'ls-title-' + which; });
+    dash.setLink(which === 'map' ? 'ls-page-map' : 'ls-page-kpi');
+  }));
+
+  // Filters
+  dash.draw('ftype', (sel) => {
+    const types = [...new Set(rowsOf('shows').map((r) => r.type))];
+    sel.replaceChildren(new Option('Flight type: all', ''), ...types.map((t) => new Option(typeLabel[t] || t, t)));
+    sel.value = dash.params().ftype || '';
+    sel.onchange = () => dash.setParams({ ftype: sel.value || null, show: null });
+  });
+  dash.draw('showsel', (sel) => {
+    const ft = dash.params().ftype;
+    const list = rowsOf('shows').filter((r) => !ft || r.type === ft);
+    sel.replaceChildren(new Option('Show name: all', ''), ...list.map((r) => new Option(r.show)));
+    sel.value = dash.params().show || '';
+    sel.onchange = () => dash.setParams({ show: sel.value || null });
+  });
+
+  // KPI tiles
+  dash.draw('kpi', (el) => {
+    const g = dash.data('kpi');
+    el.setAttribute('data-where', 'group=' + enc(group()));
+    if (g.status !== 'ok') { el.textContent = '—'; return; }
+    const row = g.data.find((r) => r.group === group());
+    const v = row ? row[el.getAttribute('data-field')] : null;
+    el.textContent = v == null || Number.isNaN(v) ? '—' : fmt[el.getAttribute('data-fmt')](v);
+  });
+
+  // Map
+  dash.draw('map', (el) => {
+    const rows = rowsOf('shows');
+    if (!rows.length || !window.LS_GEO) { el.replaceChildren(); return; }
+    const w = Math.max(320, el.clientWidth || 800), h = Math.round(w * 0.5224);
+    const ft = dash.params().ftype, sh = dash.params().show;
+    const vis = rows.filter((r) => (!ft || r.type === ft) && (!sh || r.show === sh));
+    const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-85, Math.min(85, lat)) * Math.PI / 360));
+    const yTop = merc(76), yBot = merc(-56);
+    const proj = ([lon, lat]) => [(lon + 180) / 360 * w, (yTop - merc(lat)) / (yTop - yBot) * h];
+    const pts = (cs) => cs.map((p) => { const q = proj(p); return q[0].toFixed(1) + ',' + q[1].toFixed(1); });
+    const path = (g) => (g.type === 'MultiPolygon'
+      ? g.coordinates.flatMap((poly) => poly.filter((ring) => Math.max(...ring.map((p) => p[1])) > -58).map((ring) => 'M' + pts(ring).join('L') + 'Z'))
+      : g.coordinates.map((line) => 'M' + pts(line).join('L'))).join('');
+    const rmax = Math.max(14, w * 0.034);
+    const maxT = d3.max(rows, (r) => r.takeoff);
+    const rad = d3.scaleSqrt().domain([0, maxT]).range([3, rmax]);
+
+    const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img')
+      .attr('aria-label', 'Bubble map of drones taking off by show');
+    svg.append('rect').attr('width', w).attr('height', h).attr('fill', '#050505');
+    svg.append('path').attr('d', path(window.LS_GEO.land)).attr('fill', '#262626').attr('fill-rule', 'evenodd');
+    svg.append('path').attr('d', path(window.LS_GEO.borders)).attr('fill', 'none').attr('stroke', '#3d3d3d').attr('stroke-width', 0.6);
+    svg.append('line').attr('x1', 0).attr('x2', w).attr('y1', proj([0, 0])[1]).attr('y2', proj([0, 0])[1])
+      .attr('stroke', '#555').attr('stroke-dasharray', '4 4').attr('stroke-width', 0.8);
+
+    const tip = document.createElement('div');
+    tip.className = 'ls-tip';
+    const place = (ev) => {
+      const b = el.getBoundingClientRect();
+      const x = ev.clientX - b.left, y = ev.clientY - b.top;
+      tip.style.left = Math.min(x + 14, b.width - tip.offsetWidth - 4) + 'px';
+      tip.style.top = Math.max(4, y - tip.offsetHeight - 10) + 'px';
+    };
+
+    svg.append('g').selectAll('circle').data(vis.slice().sort((a, b) => b.takeoff - a.takeoff)).join('circle')
+      .attr('cx', (d) => proj([d.lon, d.lat])[0]).attr('cy', (d) => proj([d.lon, d.lat])[1])
+      .attr('r', (d) => rad(d.takeoff))
+      .attr('fill', (d) => typeColor[d.type] || '#999').attr('fill-opacity', 0.45)
+      .attr('stroke', (d) => typeColor[d.type] || '#999').attr('stroke-opacity', 0.9).attr('stroke-width', 1.2)
+      .style('cursor', 'pointer')
+      .on('pointermove', (ev, d) => {
+        const line = (k, v) => { const p = document.createElement('div'); const s = document.createElement('span'); s.textContent = k + ' '; const b = document.createElement('b'); b.textContent = v; p.append(s, b); return p; };
+        const head = document.createElement('div'); const hb = document.createElement('b'); hb.textContent = d.show.toUpperCase(); head.appendChild(hb);
+        tip.replaceChildren(head, line('Type:', typeLabel[d.type] || d.type), line('City:', d.city), line('Number drones take off:', fmt.int(d.takeoff)));
+        tip.style.opacity = 1; place(ev);
+      })
+      .on('pointerleave', () => { tip.style.opacity = 0; });
+
+    // labels for biggest bubbles
+    const placed = [];
+    const labelled = vis.slice().sort((a, b) => b.takeoff - a.takeoff).filter((d) => {
+      if (d.takeoff < maxT * 0.18) return false;
+      const [cx, cy] = proj([d.lon, d.lat]);
+      const bw = d.city.split(',')[0].length * 6.6 + 10, by = cy + rad(d.takeoff) + 12;
+      const box = { x0: cx - bw / 2, x1: cx + bw / 2, y0: by - 13, y1: by + 5 };
+      if (placed.some((b) => box.x0 < b.x1 && box.x1 > b.x0 && box.y0 < b.y1 && box.y1 > b.y0)) return false;
+      placed.push(box);
+      return true;
+    });
+    svg.append('g').selectAll('text').data(labelled).join('text')
+      .attr('x', (d) => proj([d.lon, d.lat])[0]).attr('y', (d) => proj([d.lon, d.lat])[1] + rad(d.takeoff) + 12)
+      .attr('text-anchor', 'middle').attr('fill', '#cfcfcf').attr('font-size', 11).style('pointer-events', 'none')
+      .text((d) => d.city.split(',')[0]);
+
+    el.replaceChildren(svg.node(), tip);
+  });
+});
+</script>
+
+</body></html>
