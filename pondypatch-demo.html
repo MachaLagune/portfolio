@@ -1142,6 +1142,8 @@ select:focus{outline:none;border-color:var(--bleu)}
   var NOMS = ['Martin', 'Bernard', 'Dubois', 'Moreau', 'Laurent', 'Simon', 'Michel', 'Lefèvre', 'Leroy', 'Roux', 'David', 'Bertrand', 'Morel', 'Fournier', 'Girard', 'Bonnet', 'Dupont', 'Lambert', 'Fontaine', 'Rousseau', 'Vincent', 'Muller', 'Faure', 'André', 'Mercier', 'Blanc', 'Guérin', 'Boyer', 'Garnier', 'Chevalier', 'François', 'Legrand', 'Gauthier', 'Garcia', 'Perrin', 'Robin', 'Clément', 'Morin', 'Nicolas', 'Henry'];
   var DOMAINES = ['Commerce', 'Commerce', 'Ingénierie', 'Ingénierie', 'Ingénierie', 'Soins infirmiers', 'Soins infirmiers', 'Informatique', 'Informatique', 'Comptabilité'];
   var SCOLAIRE = ['6th grade', '7th grade', '8th grade', '9th grade', '10th grade', '11th grade', '12th grade'];
+  var ECOLES = ['Green Valley Higher Secondary School', 'St. Maria Girls School', 'Lotus Public School', 'Riverside Matriculation School', 'Hillview Government School', 'Sunrise Model School'];
+  var ETABLISSEMENTS = ['Bluehill College of Arts & Science', 'Northfield Institute of Technology', 'Maple Nursing College', 'Eastgate Engineering College', 'Lakeside Polytechnic'];
   var SUP = ['1ère année', '2ème année', '3ème année', 'Bachelor', 'Master 1'];
   var RAISONS = ['A trouvé un travail', 'A trouvé un travail', 'A trouvé un travail', 'Etudes terminées', 'Etudes terminées', 'Mariage', 'Déménagement', 'Décision parrain', 'Décision enfant'];
   var VU_PAR = ['Équipe locale — binôme A', 'Équipe locale — binôme B', 'Bénévole en mission'];
@@ -1166,6 +1168,7 @@ select:focus{outline:none;border-color:var(--bleu)}
       dob: date(Y - age, int(0, 11), int(1, 28)),
     };
     kid.school = age < 18 ? SCOLAIRE[Math.min(SCOLAIRE.length - 1, Math.max(0, age - 12))] : pick(SUP);
+    kid.ecole = age < 18 ? ECOLES[i % ECOLES.length] : ETABLISSEMENTS[i % ETABLISSEMENTS.length];
     kids.push(kid);
   }
 
@@ -1451,7 +1454,7 @@ select:focus{outline:none;border-color:var(--bleu)}
     getEnfantsData: function () {
       return kids.map(function (k, i) {
         var st = kidStatut(k.id), r = lastByKid[k.id];
-        return { nom: k.nom, id: k.id, niveau: r ? r.niveau : k.school, school: k.school, domaine: r ? r.domaine : '', statut: st, parraine: st === 'Ongoing', dejaParraine: st !== 'Attente', sexe: k.sexe, sexeRaw: k.sexe === 'Fille' ? 'f' : 'm', age: k.age, dateBirth: iso(k.dob), rowNum: i + 2 };
+        return { nom: k.nom, id: k.id, niveau: r ? r.niveau : k.school, school: k.ecole || k.school, domaine: r ? r.domaine : '', statut: st, parraine: st === 'Ongoing', dejaParraine: st !== 'Attente', sexe: k.sexe, sexeRaw: k.sexe === 'Fille' ? 'f' : 'm', age: k.age, dateBirth: iso(k.dob), rowNum: i + 2 };
       });
     },
     getParrainagesData: function () {
