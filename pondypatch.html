@@ -111,9 +111,9 @@ footer{padding-block:48px 72px;color:var(--ink-2);font-size:var(--s-1)}
 
 <header class="hero">
   <div class="wrap">
-    <span class="label">Étude de cas · Application web bénévole</span>
+    <span class="label">Étude de cas · Mission Pondypatch</span>
     <h1>L'espace de gestion des Enfants de Pondypatch</h1>
-    <p class="lede">Une association française finance les études d'enfants à Pondichéry, en Inde, grâce à des parrains. J'ai conçu et développé l'outil qui remplace ses tableurs : suivi des parrainages, comptes-rendus d'entretien, paiements HelloAsso et relances, dans une seule interface.</p>
+    <p class="lede">Une association française finance les études d'enfants à Pondichéry, en Inde, grâce à des parrains. J'ai conçu et développé l'outil qui met à jour automatiquement sa base de données (parrains, enfants, parrainages, paiements HelloAsso) rapproche les paiements des parrainages, génère les comptes-rendus d'entretien et déclenche alertes et relances, dans une seule interface.</p>
     <div class="meta">
       <span class="chip">Google Apps Script</span><span class="chip">JavaScript</span><span class="chip">API HelloAsso</span><span class="chip">Google Sheets · Forms · Docs · Gmail</span>
     </div>
@@ -128,13 +128,13 @@ footer{padding-block:48px 72px;color:var(--ink-2);font-size:var(--s-1)}
 <main class="wrap">
   <div class="facts" aria-label="Le projet en chiffres">
     <div class="fact"><b>11 500</b><span>lignes de code écrites</span></div>
-    <div class="fact"><b>9</b><span>formulaires Google reliés</span></div>
-    <div class="fact"><b>16</b><span>onglets de données synchronisés</span></div>
+    <div class="fact"><b>6</b><span>formulaires Google reliés</span></div>
+    <div class="fact"><b>12</b><span>onglets de données synchronisés, dont 10 lus ou modifiés directement par l'interface</span></div>
     <div class="fact"><b>125 €</b><span>par filleul et par semestre, suivis automatiquement</span></div>
   </div>
 
   <section>
-    <div class="sec-head"><span class="label">Le point de départ</span><h2>Des tableurs, des emails et beaucoup de mémoire</h2></div>
+    <div class="sec-head"><span class="label">Le point de départ</span><h2>Des tableurs et des emails</h2></div>
     <div class="prose read">
       <p>Le bureau de l'association, entièrement bénévole, gérait les enfants, les parrains, les entretiens annuels et les paiements dans des feuilles Google remplies à la main. Chaque semestre, il fallait croiser les paiements reçus sur HelloAsso avec la liste des parrains, repérer les retards, écrire les relances et rédiger un compte-rendu par enfant pour son parrain.</p>
       <p><strong>Les besoins :</strong> voir d'un coup d'œil ce qui demande une action, automatiser les tâches répétitives, et garder les outils que les bénévoles connaissaient déjà (Google Forms et Sheets) plutôt que d'imposer un nouveau logiciel.</p>
@@ -167,10 +167,10 @@ footer{padding-block:48px 72px;color:var(--ink-2);font-size:var(--s-1)}
     <div class="diagram" role="img" aria-label="Schéma : les formulaires Google alimentent Google Sheets ; Apps Script lit et écrit dans Sheets, reçoit les paiements HelloAsso, génère les documents dans Drive, envoie les emails par Gmail et sert l'interface web">
       <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg">
         <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
-        <rect class="box" x="20" y="40" width="190" height="78" rx="10"/><text x="38" y="72" font-weight="700" font-size="15">Google Forms</text><text class="t-small" x="38" y="96">9 formulaires de saisie</text>
+        <rect class="box" x="20" y="40" width="190" height="78" rx="10"/><text x="38" y="72" font-weight="700" font-size="15">Google Forms</text><text class="t-small" x="38" y="96">6 formulaires de saisie</text>
         <rect class="box" x="20" y="200" width="190" height="78" rx="10"/><text x="38" y="232" font-weight="700" font-size="15">HelloAsso</text><text class="t-small" x="38" y="256">webhook + API OAuth2</text>
         <rect class="core" x="330" y="110" width="240" height="110" rx="12"/><text x="352" y="146" font-weight="800" font-size="17">Apps Script</text><text class="t-small" x="352" y="170">déclencheurs, logique métier,</text><text class="t-small" x="352" y="188">cache 5 min, API de l'interface</text><text class="t-mono" x="352" y="208">onFormSubmit · doPost · doGet</text>
-        <rect class="box" x="330" y="10" width="240" height="62" rx="10"/><text x="352" y="38" font-weight="700" font-size="15">Google Sheets</text><text class="t-small" x="352" y="58">16 onglets = base de données</text>
+        <rect class="box" x="330" y="10" width="240" height="62" rx="10"/><text x="352" y="38" font-weight="700" font-size="15">Google Sheets</text><text class="t-small" x="352" y="58">12 onglets = base de données</text>
         <rect class="box" x="690" y="20" width="190" height="70" rx="10"/><text x="708" y="50" font-weight="700" font-size="15">Interface web</text><text class="t-small" x="708" y="72">SPA JavaScript</text>
         <rect class="box" x="690" y="130" width="190" height="70" rx="10"/><text x="708" y="160" font-weight="700" font-size="15">Google Docs · Drive</text><text class="t-small" x="708" y="182">CR et attestations fiscales</text>
         <rect class="box" x="690" y="240" width="190" height="70" rx="10"/><text x="708" y="270" font-weight="700" font-size="15">Gmail</text><text class="t-small" x="708" y="292">relances, envoi des CR</text>
@@ -188,6 +188,10 @@ footer{padding-block:48px 72px;color:var(--ink-2);font-size:var(--s-1)}
   <section>
     <div class="sec-head"><span class="label">Défis techniques</span><h2>Ce qui a demandé le plus de réflexion</h2></div>
     <div class="challenges">
+      <article class="ch">
+        <h3>Reprendre 30 ans de données hétérogènes</h3>
+        <p>L'historique de l'association couvrait une trentaine d'années, réparti dans plusieurs fichiers Google Sheets tenus de manière très différente d'un fichier à l'autre. Il a fallu nettoyer ces données et les structurer dans un modèle unique (enfants, parrains, parrainages, paiements) avant de pouvoir alimenter la base de données.</p>
+      </article>
       <article class="ch">
         <h3>Rapprocher les paiements des bonnes personnes</h3>
         <p>Sur HelloAsso, un parrain paie souvent avec un autre email que celui enregistré, ou inverse nom et prénom. J'ai écrit un rapprochement en cascade : email exact, puis correspondance mémorisée, puis comparaison souple des noms sans accents. Les cas douteux remontent en alerte, et chaque validation est retenue pour les imports suivants.</p>
